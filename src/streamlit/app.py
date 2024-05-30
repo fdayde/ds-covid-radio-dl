@@ -7,6 +7,4 @@ st.set_page_config(
 )
 
 st.title("Data Science Project: COVID-19 radiographies classification")
-st.sidebar.title("Sommaire")
-pages=["Exploration", "DataVizualization", "Modélisation"]
-page=st.sidebar.radio("Aller vers", pages)
+
