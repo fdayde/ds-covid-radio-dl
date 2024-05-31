@@ -1,5 +1,6 @@
 #Main architecture of the model
 import tensorflow as tf
+import streamlit as st
 from tensorflow.keras.layers import GlobalAveragePooling2D, Dense, Dropout
 from tensorflow.keras.applications import DenseNet201
 from tensorflow.keras.models import Model
@@ -34,6 +35,14 @@ def build_model_tuned_densenet201():
 
     return model
 
+@st.cache_resource()
+def load_model(model_name):
+    if model_name == 'DenseNet201':
+        model = build_model_tuned_densenet201()
+        model.load_weights(r'C:\Users\tomba\Documents\GitHub\MAR24_BDS_Radios_Pulmonaire\models\model_densenet_masked.weights.h5')
+        return model
+    # Add other models here
+    return None
 
 class_names = {
     0: 'COVID',
