@@ -6,6 +6,11 @@ from tensorflow.keras.applications import DenseNet201
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 import numpy as np
+import os
+
+# weights path
+current_dir = os.path.dirname(__file__)
+densenet_weights_path = os.path.join(current_dir, '..', '..', '..', 'models', 'model_densenet_masked.weights.h5')
 
 def build_model_tuned_densenet201():
     base_model = DenseNet201(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
@@ -39,7 +44,7 @@ def build_model_tuned_densenet201():
 def load_model(model_name):
     if model_name == 'DenseNet201':
         model = build_model_tuned_densenet201()
-        model.load_weights(r'C:\Users\tomba\Documents\GitHub\MAR24_BDS_Radios_Pulmonaire\models\model_densenet_masked.weights.h5')
+        model.load_weights(densenet_weights_path)
         return model
     # Add other models here
     return None
