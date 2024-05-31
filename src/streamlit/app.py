@@ -1,4 +1,3 @@
-
 import streamlit as st
 
 st.set_page_config(
@@ -7,3 +6,5 @@ st.set_page_config(
 )
 
 st.title("Data Science Project: COVID-19 radiographies classification")
+
+
