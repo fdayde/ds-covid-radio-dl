@@ -39,7 +39,7 @@ page = st.sidebar.radio("Summary", pages, label_visibility="collapsed")
 base_path = Path.cwd()
 images = base_path / 'pictures'
 banner_path = str(images / 'banner_streamlit.jpg')
-
+logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG")
 
 # Définir le chemin vers le dossier contenant les images pour l'animation
 images_animation_lungs = images / 'COVID_lung_animation'
@@ -55,7 +55,6 @@ image_files = sorted([os.path.join(images_animation_lungs, file) for file in os.
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 
 covid_markdown_intro = """
-## 1. COVID-19 Overview
 
 <div style='text-align: justify;'>
 COVID-19, caused by SARS-CoV-2, emerged in late 2019 and quickly became a 
@@ -73,7 +72,7 @@ the patient.
 
 
 covid_markdown_health="""
-## Lung Impact
+
 - **Inflammation** 
 
     COVID-19 can cause significant inflammation in the lungs, leading to swelling and 
@@ -105,7 +104,6 @@ As the infection progresses, lesions start to appear on the lungs :
 
 
 covid_markdown_diagnostic = """
-## COVID-19 Diagnostic
 
 #### - **ELISA TESTS** : **Quick** (15 minutes) but **low specificity**
 
@@ -121,9 +119,9 @@ covid_markdown_diagnostic = """
 
 
 deep_learning_markdown = """
-### Introduction to Deep Learning Models
+#### Introduction to Deep Learning Models
 
-Deep learning, a subset of machine learning, involves neural networks with many layers (hence "deep"). These models are designed to automatically learn representations of data through multiple levels of abstraction.
+Deep learning, a subset of machine learning, involves neural networks with many layers. These models are designed to automatically learn representations of data through multiple levels of abstraction.
 
 Popular Deep Learning Models :
 
@@ -153,25 +151,23 @@ We decided that it would be best to develop a Deep Learning model capable of cla
 
 
 if page == "Context : COVID":
-    st.markdown('<hr>', unsafe_allow_html=True)
-    st.write("# Introduction")
-    st.markdown('<hr>', unsafe_allow_html=True)
+    st.header("Introduction", divider = 'rainbow')
+    st.subheader("COVID-19 Overview", divider = 'grey')
     st.markdown(covid_markdown_intro, unsafe_allow_html=True)
 
     ## Séparer l'image et le texte dans 2 colonnes différentes pour les afficher côtes-à-côtes
     col1, col2 = st.columns(2)
-    st.markdown('<hr>', unsafe_allow_html=True)
     with col1:
+        st.subheader("Lung Impact", divider = 'grey')
         st.markdown(covid_markdown_health)
     with col2:
-        for _ in range(4):
-            st.write("")
+        st.subheader("", divider = 'grey')
         st.image(str(images / 'COVID19_lung_impact.jpg'), caption = 'COVID19 action on lungs, drawn by Brooke Ring', use_column_width=True)
 
     for _ in range(2):
         st.write("")
 
-    st.markdown('<hr>', unsafe_allow_html=True)
+    st.subheader("", divider = 'grey')
 
     st.markdown(covid_markdown_lungs)
 
@@ -197,19 +193,15 @@ if page == "Context : COVID":
     ## Slider to control the image index
     st.session_state.image_index = st.slider("Image Index", 0, len(image_files) - 1, st.session_state.image_index, step=1)
 
-    st.markdown('<hr>', unsafe_allow_html=True)
+    st.subheader("COVID-19 Diagnostic", divider = 'grey')
 
     st.markdown(covid_markdown_diagnostic)
 
-    st.markdown('<hr>', unsafe_allow_html=True)
-
 if page == "Context : Deep Learning":
-    st.markdown('<hr>', unsafe_allow_html=True)
-    st.title("Introduction")
-    st.markdown('<hr>', unsafe_allow_html=True)
-    st.markdown("""# 2. Machine Learning and Deep Learning Overview""")
+    st.header("Introduction", divider = 'rainbow')
+    st.subheader("Machine Learning and Deep Learning Overview", divider = 'grey')
     st.markdown(deep_learning_markdown)
-    st.markdown('<hr>', unsafe_allow_html=True)
+    st.subheader("", divider = 'grey')
     # Data for the timeline
     data = {
         "Year": [
@@ -251,8 +243,7 @@ if page == "Context : Deep Learning":
     # Define different lengths for the vertical lines to prevent overlap
     lengths = [1.5, 1, 1.7, 1.2, 1.8, 1.3, 2, 1.5, 1.6, 1.4, 1.9]
 
-    # Streamlit App
-    st.markdown("### Timeline of Advancements in Machine Learning")
+    st.subheader("Timeline of Advancements in Machine Learning", divider = 'grey')
 
     # Create the timeline figure
     fig = go.Figure()
@@ -313,80 +304,33 @@ if page == "Context : Deep Learning":
     st.plotly_chart(fig)
 
     # Display the data with corrected date format and set as index
-    st.write("### Key Milestones in Machine Learning and Deep Learning")
+    st.subheader("Key Milestones in Machine Learning and Deep Learning", divider = 'grey')
     st.dataframe(df, use_container_width=True)
-    st.markdown('<hr>', unsafe_allow_html=True)
 
     for _ in range(2):
                 st.write("")
 
+    st.subheader("", divider = 'grey')
+
     st.markdown(deep_learning_use)
 
 
-def get_image_as_base64(path):
-    with open(path, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read()).decode()
-    return f"data:image/png;base64,{encoded_string}"
-
-# Function to add a footer with names, LinkedIn links, and an image
-def add_footer(image_path):
-    image_url = get_image_as_base64(image_path)
-    footer = f"""
-    <style>
-    .footer {{
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #333;
-        color: #f1f1f1;
-        text-align: center;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }}
-    .footer .links {{
-        flex: 1;
-        text-align: center;
-    }}
-    .footer .image {{
-        margin-right: 20px;
-    }}
-    .footer a {{
-        color: #0a66c2;
-        margin: 0 10px;
-        text-decoration: none;
-    }}
-    .footer a:hover {{
-        text-decoration: underline;
-    }}
-    </style>
-    <div class="footer">
-        <div class="links">
-            <p>Projet de Data Science sur la classification des radiographies pulmonaires COVID-19 | © 2024</p>
-            <p>
-                <a href="https://www.linkedin.com/in/thomas-barret/" target="_blank" rel="noopener noreferrer">Thomas Barret</a> |
-                <a href="https://www.linkedin.com/in/nicolas-bouzinbi/" target="_blank" rel="noopener noreferrer">Nicolas Bouzinbi</a> |
-                <a href="https://www.linkedin.com/in/florent-dayde/" target="_blank" rel="noopener noreferrer">Florent Daydé</a> |
-                <a href="https://www.linkedin.com/in/nicolas-fenassile/" target="_blank" rel="noopener noreferrer">Nicolas Fenassile</a>
-            </p>
-        </div>
-        <div class="image">
-            <img src="{image_url}" alt="Logo" height="50">
-        </div>
-    </div>
-    """
-    st.markdown(footer, unsafe_allow_html=True)
-
-# Path to the uploaded image
-logo_path = str(images / 'Logo_Datascientest.png')
-
-# Add the footer with the image URL
-add_footer(logo_path)
-
-
 if page == "Objective":
-    st.title("Introduction")
-    st.markdown("""# 3. What we wanted to achieve""")
+    st.header("Introduction", divider = 'rainbow')
+    st.subheader("What We Wanted To Achieve", divider = 'grey')
     st.markdown(objective_markdown)
+
+# Footer
+st.header(" ", divider = 'rainbow')
+hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
+
+with hcol1:
+    st.markdown("""Thomas Baret  
+                    Nicolas Bouzinbi  
+                     Florent Daydé  
+                     Nicolas Fenassile""")
+with hcol2:
+    st.markdown(" ")
+
+with hcol3:
+    st.image(logo_path, use_column_width=True)
