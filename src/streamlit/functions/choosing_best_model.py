@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas as pd
+
 
 def table_markdown():
     table_md = """
@@ -21,3 +23,35 @@ def model_choice():
 
 def choose_best_model():
     return table_markdown(), model_choice()
+
+
+data_accuracy_global = {
+    "model": ["VGG19", "VGG19", "MobileNetV2", "MobileNetV2", "DenseNet201", "DenseNet201", "Xception"],
+    "masques": [1, 0, 1, 0, 1, 0, 0],
+    "Accuracy": [0.92, 0.94, 0.86, 0.93, 0.91, 0.96, 0.96]
+}
+
+df_accuracy_global = pd.DataFrame(data_accuracy_global)
+
+data_classification_report = {
+    "Class": ["COVID", "Non COVID", "Normal", "COVID", "Non COVID", "Normal",
+              "COVID-19", "Non-COVID", "Normal", "COVID-19", "Non-COVID", "Normal",
+              "COVID-19", "Normal", "Non-COVID", "COVID-19", "Normal", "Non-COVID",
+              "COVID-19", "Normal", "Non-COVID"],
+    "Precision": [0.91, 0.91, 0.93, 0.96, 0.91, 0.95, 0.91, 0.85, 0.82, 0.98, 0.89, 0.93,
+                  0.93, 0.89, 0.91, 0.99, 0.95, 0.94, 0.99, 0.95, 0.93],
+    "Recall": [0.94, 0.92, 0.88, 0.97, 0.94, 0.89, 0.81, 0.88, 0.89, 0.97, 0.94, 0.88,
+               0.90, 0.92, 0.92, 0.98, 0.93, 0.96, 0.98, 0.93, 0.96],
+    "f1-score": [0.93, 0.92, 0.91, 0.96, 0.93, 0.92, 0.86, 0.86, 0.86, 0.97, 0.92, 0.90,
+                 0.91, 0.90, 0.91, 0.99, 0.94, 0.95, 0.99, 0.94, 0.95],
+    "Support": [2395, 2253, 2140, 2395, 2253, 2140, 2395, 2253, 2140, 2395, 2253, 2140,
+                2395, 2140, 2253, 2395, 2140, 2253, 2395, 2140, 2253],
+    "model": ["VGG19", "VGG19", "VGG19", "VGG19", "VGG19", "VGG19",
+              "MobileNetV2", "MobileNetV2", "MobileNetV2", "MobileNetV2", "MobileNetV2", "MobileNetV2",
+              "DenseNet201", "DenseNet201", "DenseNet201", "DenseNet201", "DenseNet201", "DenseNet201",
+              "Xception", "Xception", "Xception"],
+    "masques": [1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0]
+}
+
+df_clasif_rport = pd.DataFrame(data_classification_report)
+
