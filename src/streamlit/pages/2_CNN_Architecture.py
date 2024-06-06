@@ -10,15 +10,80 @@ st.set_page_config(page_title="CNN Architecture", page_icon=":construction:",)
 st.title("Convolutional Neural Network Architecture")
 
 # CNN picture
-image_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "cnn_architecture.png")
-st.image(image_path, caption="Architecture of a CNN.", use_column_width=True)
+architecture_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "cnn_architecture.png")
+st.image(architecture_img_path, caption="Architecture of a CNN.", use_column_width=True)
 st.markdown("<font size='1'><div style='text-align: right;'>[image source](https://www.mathworks.com/videos/introduction-to-deep-learning-what-are-convolutional-neural-networks--1489512765771.html)", unsafe_allow_html=True)
 
 # Selection box to choose the architecture
 architecture = st.selectbox(
     "Illustration of different CNN architectures:",
-    ("Simple CNN", "Simplified DenseNet201")
+    ("Simple CNN", "Key Concepts", "Simplified DenseNet201", "Overfitting")
 )
+
+
+
+# CNN imgages path
+convolution_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "convolution.gif")
+pooling_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "pooling.gif")
+fullcnn_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "full_cnn.gif")
+dropout_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "dropout.gif")
+earlystoping_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "early_stopping.webp")
+dataaugmentation_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "data_augmentation.jpg")
+# sources 
+# convolution : https://mlnotebook.github.io/post/CNN1/
+# pooling : https://towardsdatascience.com/an-introduction-to-convolutional-neural-networks-bdf692352c7
+# full cnn : https://adatis.co.uk/wp-content/uploads/CNNsFullGifff.gif
+# dropout : https://miro.medium.com/v2/resize:fit:640/format:webp/1*znOtHWgqnEtpXWk2iQcK-Q.gif
+# early stopping : https://miro.medium.com/v2/resize:fit:640/format:webp/1*nhmPdWSGh3ziatQKOmVq0Q.png
+# data augmentation : https://www.sciencedirect.com/science/article/pii/S174680942100923X#f0010
+
+
+def key_concepts():
+    # Colored header
+    colored_header(
+        label="CNN Key Concepts",
+        description="Visual representation of some CNN key concepts.",
+        color_name="red-70",
+    )
+
+    # Create a layout with two columns
+    col1, col2 = st.columns([1, 2])
+
+
+    # URLs for the images to be displayed
+    image_paths = [
+        convolution_img_path,
+        pooling_img_path
+    ]
+
+    # Render the graph in the first column
+    with col1:
+        for url in image_paths:
+            st.image(url, use_column_width=True)
+            for _ in range(26):
+                st.write("")
+
+    # Add explanations for each step in the second column
+    with col2:
+        st.markdown("""
+        - **Convolution**:   
+            - mathematical operation performed between a small matrix called a **kernel** (or filter) and a subset of the input data,\n
+            - the kernel slides over the input data and a dot product is computed at each position,\n
+            - the kernel's weights depends on the model, and are updated during the learning phase,\n
+            - then a **bias** is added to the result,\n
+            - a new matrix, the **feature map** is created, which higlights specific feature of the data.\n
+        - **Parameters**:   
+            - each convolutional layer has a number of parameters defined by:\n
+                - [the size of the kernel] X [the number of channels of the input] X [the number of channels of the output] X the bias,\n
+                - the number of parameters is directly linked to the model's capacity to learn complex pattern in the data.\n
+        - **Pooling**:    
+            - Summary Statistic: replaces network outputs at certain locations with a summary of nearby outputs\n
+            - Spatial Size Reduction: It decreases the representation’s spatial size, reducing computation and weights\n
+            - Individual Slices: Pooling operates on each representation slice individually\n
+            - Max Pooling: The most common pooling method, retaining the maximum value from the local neighborhood.\n
+        """)
+
+
 
 def simple_cnn_diagram():
     # Create a graph object
@@ -59,11 +124,13 @@ def simple_cnn_diagram():
         st.markdown("""
         - **Input Layer**: This is the initial layer that takes input images of size 32x32 with 3 channels (RGB).\n
         - **Conv Layer**: Convolutional layer with 8 filters, resulting in feature maps of size 28x28.\n
-        - **ReLU Layer**: Applies the Rectified Linear Unit activation function.\n
+        - **ReLU Layer**: Applies the Rectified Linear Unit activation function to introduce non linearity.\n
         - **Pooling Layer**: Performs max pooling, reducing the spatial dimensions to 14x14.\n
-        - **Fully Connected Layer**: Flattens the feature maps and passes through a dense layer with 784 neurons, followed by ReLU activation.\n
+        - **Fully Connected (or Dense) Layer**: Flattens the feature maps and passes through a dense layer with 784 neurons, followed by ReLU activation.\n
         - **Output Layer**: Final classification layer with 10 neurons, representing the output classes.\n
         """)
+
+    st.image(fullcnn_img_path, use_column_width=True)
 
 
 
@@ -134,7 +201,53 @@ def simplified_densenet201_diagram():
 
 
 
+
+
+def overfitting():
+    # Colored header
+    colored_header(
+        label="Overfitting",
+        description="Overfitting solutions.",
+        color_name="orange-70",
+    )
+
+    # Create a layout with two columns
+    col1, col2 = st.columns([1, 2])
+
+
+    # URLs for the images to be displayed
+    image_paths = [
+        dropout_img_path,
+        earlystoping_img_path,
+        dataaugmentation_img_path
+    ]
+
+    # Render the graph in the first column
+    with col1:
+        for url in image_paths:
+            st.image(url, use_column_width=True)
+            for _ in range(4):
+                st.write("")
+
+    # Add explanations for each step in the second column
+    with col2:
+        st.markdown("""
+        - **Dropouts**:   
+            - 
+        - **Early Stopping**:   
+            - 
+        - **Data Augmentation**:    
+            - 
+        """)
+
+
+
+
 if architecture == "Simple CNN":
     simple_cnn_diagram()
-else:
+elif architecture == "Key Concepts":
+    key_concepts()
+elif architecture == "Simplified DenseNet201":
     simplified_densenet201_diagram()
+else : 
+    overfitting()
