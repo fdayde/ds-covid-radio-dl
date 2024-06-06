@@ -84,29 +84,43 @@ We chose to normalize the images with CLAHE because it provides a balanced appro
 # Step 3: Transfer learning
 if st.checkbox("Step 3: Transfer Learning"):
     st.write("### Step 3: Transfer Learning")
+    st.markdown("""
+### Fine-Tuning a Pre-trained Model: DenseNet201 Example
+
+Fine-tuning a pre-trained model is a powerful technique in transfer learning, allowing a model trained on a large dataset to be adapted for a specific task with a smaller dataset. Transfer learning leverages the knowledge gained from one task and applies it to a different but related task, significantly improving performance and reducing the time required for training.
+
+Let's take DenseNet201 as an example to illustrate this process. DenseNet201, part of the Dense Convolutional Network (DenseNet) family, is pre-trained on a vast dataset like ImageNet. The process of fine-tuning involves adjusting this pre-trained model to better suit a new, often more specialized dataset.
+
+Here’s a step-by-step outline of the fine-tuning process with DenseNet201, specifically focusing on unfreezing the last two convolutional blocks:
+
+1. **Load the Pre-trained Model**: First, we load the DenseNet201 model with weights pre-trained on a large benchmark dataset such as ImageNet. This provides a robust starting point as the model has already learned to detect a wide variety of features.
+
+2. **Freezing Layers**: Initially, all the layers of DenseNet201 are frozen to prevent their weights from being updated during the training process. This ensures that the pre-trained knowledge is retained.
+
+3. **Replace the Top Layers**: Since the original DenseNet201 model is designed for classification over a different number of classes, the top (fully connected) layers are replaced to match the number of classes in the new dataset.
+
+4. **Unfreeze Specific Layers**: To adapt the model to the new task, we selectively unfreeze the last two convolutional blocks. Unfreezing these layers allows them to learn and fine-tune to the new dataset while keeping the earlier layers frozen to preserve their general feature detection capabilities.
+
+5. **Compile the Model**: The model is then compiled with a suitable optimizer (such as Adam or SGD) and a loss function appropriate for the new task, often categorical cross-entropy for classification problems.
+
+6. **Training**: The model is trained on the new dataset, with the unfreezed layers adjusting their weights to learn task-specific features. During this stage, a lower learning rate is typically used to prevent large updates that could disrupt the pre-trained weights significantly.
+
+7. **Evaluation and Iteration**: After training, the model’s performance is evaluated. Depending on the results, further fine-tuning may be done, possibly by unfreezing more layers or adjusting hyperparameters.
+
+By following this process, DenseNet201 can be fine-tuned to effectively perform on a new, specialized task, leveraging both the extensive pre-trained knowledge and the specific features of the new dataset. Fine-tuning thus strikes a balance between preserving learned features and adapting to new ones, making it a versatile approach in deep learning and transfer learning.
+""")
+
+# Step 4: Training
+if st.checkbox("Step 4: Training"):
+    st.write("### Step 4: Training")
     st.markdown("")
 
-# Step 4: Tuning
-if st.checkbox("Step 4: Tuning"):
-    st.write("### Step 4: Tuning")
+# Step5: Model Evaluation
+if st.checkbox("Step 5: Model Evaluation"):
+    st.write("### Step 5: Model Evaluation")
     st.markdown("")
 
-# Step 5: Training
-if st.checkbox("Step 5: Training"):
-    st.write("### Step 5: Training")
-    st.markdown("")
-
-# Step 6: Fine Tuning
-if st.checkbox("Step 6: Fine Tuning"):
-    st.write("### Step 6: Fine Tuning")
-    st.markdown("")
-
-# Step 7: Model Evaluation
-if st.checkbox("Step 7: Model Evaluation"):
-    st.write("### Step 7: Model Evaluation")
-    st.markdown("")
-
-# Step 8: Choosing the Best Model
-if st.checkbox("Step 8: Choosing the Best Model"):
-    st.write("### Step 8: Choosing the Best Model")
+# Step 6: Choosing the Best Model
+if st.checkbox("Step 6: Choosing the Best Model"):
+    st.write("### Step 6: Choosing the Best Model")
     st.markdown("")
