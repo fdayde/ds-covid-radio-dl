@@ -1,4 +1,5 @@
 import streamlit as st
+from functions.choosing_best_model import choose_best_model  # Import the function
 
 st.set_page_config(
     page_title="Modeling Process",
@@ -52,4 +53,7 @@ if st.checkbox("Step 7: Model Evaluation"):
 # Step 8: Choosing the Best Model
 if st.checkbox("Step 8: Choosing the Best Model"):
     st.write("### Step 8: Choosing the Best Model")
-    st.markdown("")
+    table_md, conclusion_md = choose_best_model()
+    st.markdown(table_md)
+    st.markdown("<br>", unsafe_allow_html=True) 
+    st.markdown(conclusion_md)
