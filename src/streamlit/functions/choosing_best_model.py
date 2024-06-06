@@ -47,8 +47,6 @@ data_classification_report = {
                0.90, 0.92, 0.92, 0.98, 0.93, 0.96, 0.98, 0.93, 0.96],
     "f1-score": [0.93, 0.92, 0.91, 0.96, 0.93, 0.92, 0.86, 0.86, 0.86, 0.97, 0.92, 0.90,
                  0.91, 0.90, 0.91, 0.99, 0.94, 0.95, 0.99, 0.94, 0.95],
-    "Support": [2395, 2253, 2140, 2395, 2253, 2140, 2395, 2253, 2140, 2395, 2253, 2140,
-                2395, 2140, 2253, 2395, 2140, 2253, 2395, 2140, 2253],
     "model": ["VGG19", "VGG19", "VGG19", "VGG19", "VGG19", "VGG19",
               "MobileNetV2", "MobileNetV2", "MobileNetV2", "MobileNetV2", "MobileNetV2", "MobileNetV2",
               "DenseNet201", "DenseNet201", "DenseNet201", "DenseNet201", "DenseNet201", "DenseNet201",
@@ -61,26 +59,40 @@ df_clasif_report = pd.DataFrame(data_classification_report)
 def create_accuracy_plot(data=df_accuracy_global):
     fig = go.Figure()
 
+    custom_colors = {
+        ("VGG19", 0): "#d96aff",   # Dark blue
+        ("VGG19", 1): "#e8a6ff",   # Light blue
+        ("MobileNetV2", 0): "#c1a885",   # Dark green
+        ("MobileNetV2", 1): "#dacbb6",   # Light green
+        ("DenseNet201", 0): "#ce010e",   # Dark red
+        ("DenseNet201", 1): "#e2676e",   # Light red
+        ("Xception", 0): "#ffc525",   # Dark yellow
+        ("Xception", 1): "#ffdc7c"    # Light yellow
+    }
+
     # Add traces for each combination of masques and model
     for masque_value in set(data["masques"]):
         for model_name in set(data["model"]):
             filtered_data = data[(data["masques"] == masque_value) & (data["model"] == model_name)]
+            color = custom_colors.get((model_name, masque_value), "blue")
             fig.add_trace(go.Bar(x=filtered_data["model"], y=filtered_data["Accuracy"], 
-                                    name=f"Masques={masque_value}, Model={model_name}"))
+                                    name=f"Masques={masque_value}, Model={model_name}",
+                                    marker=dict(color=color)
+                                    ))
 
-    # Update layout
     fig.update_layout(
         title="Accuracy by Model and Masques",
         xaxis_title="Model",
         yaxis_title="Accuracy",
         hovermode="closest"
     )
+    fig.update_yaxes(range=[0.5, 1])
 
     return fig
 
 
 
-def knn_model_similarity(data=df_clasif_report):
+def knn_model_similarity(data=df_clasif_report, nb_neighbors=3):
     """
     Calculate the similarity between models using k-Nearest Neighbors.
 
@@ -90,14 +102,14 @@ def knn_model_similarity(data=df_clasif_report):
     Returns:
     - neighbors (dict): Dictionary containing the indices of the nearest neighbors for each model.
     """
-    # Select relevant columns for k-NN
-    features = data[['Precision', 'Recall', 'f1-score', 'Support']]
+    # Relevant columns for k-NN
+    features = data[['Precision', 'Recall']]
 
     # Normalize features
     normalized_features = (features - features.mean()) / features.std()
 
     # Fit k-NN model
-    nn_model = NearestNeighbors(n_neighbors=5, algorithm='auto')
+    nn_model = NearestNeighbors(n_neighbors=nb_neighbors, algorithm='auto')
     nn_model.fit(normalized_features)
 
     # Find nearest neighbors for each model
@@ -110,7 +122,7 @@ def knn_model_similarity(data=df_clasif_report):
 
 
 
-def plot_model_similarity_graph(neighbors):
+def plot_model_similarity_graph(neighbors, nb_neighbors):
     """
     Plot the similarity between models based on k-Nearest Neighbors.
 
@@ -130,20 +142,5 @@ def plot_model_similarity_graph(neighbors):
     plt.figure(figsize=(10, 6))
     pos = nx.spring_layout(G, seed=42)  # Define the layout
     nx.draw(G, pos, with_labels=True, node_size=3000, node_color='skyblue', font_size=10, font_weight='bold', arrowsize=20)
-    plt.title('Model Similarity Graph')
-    # plt.show()
+    plt.title(f"""Models similarity based on knn ({nb_neighbors} neighbors) on classification report metrics""")
     return plt.gcf()
-
-
-
-# revoir le knn (sens, ajouter nb de parametres ou couches ?)
-# + revoir les titres
-# accuracy globale : mettre y commence à 0.5
-# mettre le footer dansune fonction ? ds un 2eme temps 
-
-# - une page interprétabilité avec gradcam display d'un mauvais gradcam et d'un bon gradcam 
-# idealement sur la meme image masquee et non masquee  
-# - fusionner 7 et 8 
-
-# - training : retravailler les epochs sur une figure 
-
