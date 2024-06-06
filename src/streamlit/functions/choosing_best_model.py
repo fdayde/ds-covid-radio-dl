@@ -81,7 +81,7 @@ def create_accuracy_plot(data=df_accuracy_global):
                                     ))
 
     fig.update_layout(
-        title="Accuracy by Model and masked",
+        title="Accuracy by Model and masked status",
         xaxis_title="Model",
         yaxis_title="Accuracy",
         hovermode="closest"
