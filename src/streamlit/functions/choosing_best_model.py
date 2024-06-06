@@ -86,7 +86,7 @@ def create_accuracy_plot(data=df_accuracy_global):
         yaxis_title="Accuracy",
         hovermode="closest"
     )
-    fig.update_yaxes(range=[0.5, 1])
+    fig.update_yaxes(range=[0.75, 1])
 
     return fig
 
