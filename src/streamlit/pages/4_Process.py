@@ -103,7 +103,41 @@ We chose to normalize the images with CLAHE because it provides a balanced appro
 
 if page == "Transfer Learning":
     st.header("Transfer Learning", divider = 'rainbow')
-    st.markdown("")
+    st.markdown("""
+### Fine-Tuning a Pre-trained Model: DenseNet201 Example
+
+Fine-tuning is a technique in transfer learning where a pre-trained model is adapted for a new task. Let's take DenseNet201 as an example. Here’s a simplified process focusing on unfreezing the last two convolutional blocks:
+
+- **Load Pre-trained Model**: Use DenseNet201 with pre-trained weights (e.g., ImageNet).""")
+    code = """base_model = DenseNet201(weights='imagenet', include_top=False, input_shape=(224, 224, 3))"""
+    st.code(code, language = 'python')
+    st.markdown("""
+- **Freeze Layers**: Initially freeze all layers to retain pre-trained knowledge.
+- **Replace Top Layers**: Adjust the top layers to match the new task's classes.""")
+    code = """ x = base_model.output
+x = GlobalAveragePooling2D()(x)
+x = Dense(256, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(128, activation='relu')(x)
+x = Dropout(0.2)(x)
+output = Dense(3, activation='softmax')(x) # COVID, Non-COVID and Normal
+
+model = Model(inputs=base_model.input, outputs=output)"""
+    st.code(code, language = 'python')
+    st.markdown("""
+- **Unfreeze Layers**: Unfreeze the last two convolutional blocks for fine-tuning.""")
+    code = """#Extract from the model building function:
+for layer in base_model.layers:
+        layer.trainable = False
+for layer in base_model.layers[137:] # Unfreezing the last two convolutional blocks
+        layer.trainable = True   """
+    st.code(code, language = 'python')
+    st.markdown("""
+- **Compile Model**: Use an appropriate optimizer (here, Adam) and loss function (sparse_categorical_crossentropy).
+- **Train Model**: Train on the new dataset with a lower learning rate.
+- **Evaluate and Adjust**: Assess performance and adjust as needed.""")
+    
+             
 
 
 if page == "Training":
@@ -113,7 +147,35 @@ if page == "Training":
 
 if page == "Interpretability":
     st.header("Evaluation", divider = 'rainbow')
-    st.markdown("")
+    st.markdown("""
+## What is Grad-CAM?
+
+Grad-CAM (Gradient-weighted Class Activation Mapping) helps visualize which parts of an image a CNN focuses on when making a prediction.
+
+## Why Use Grad-CAM?
+
+- **Debugging Models**: Check if the model focuses on correct image parts.
+- **Understanding Errors**: See why a model made a wrong prediction.
+- **Transparency**: Provide interpretable explanations for model predictions.
+""")
+
+    st.markdown("## Example Visualization")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.image("src\streamlit\pictures\grad_cam_ex_nomask.png", caption="Grad-CAM on Non-Masked Image", width=300)
+        st.image("src\streamlit\pictures\grad_cam_ex2_nomask.png", caption="Grad-CAM on Non-Masked Image", width=300)
+
+    with col2:
+        st.image("src\streamlit\pictures\grad_cam_ex_mask.png", caption="Grad-CAM on Masked Image", width=300)
+        st.image("src\streamlit\pictures\grad_cam_ex2_mask.png", caption="Grad-CAM on Masked Image", width=300)
+
+    st.markdown("""
+## Conclusion
+
+Grad-CAM offers a simple yet powerful way to interpret CNN decisions, improving model transparency and trustworthiness.
+""")
 
 
 if page == "Evaluation of models":
