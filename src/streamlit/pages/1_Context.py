@@ -15,11 +15,13 @@ page = st.sidebar.radio("Summary", pages, label_visibility="collapsed")
 
 
 # Chemin d'accès pour les images du Streamlit
-images = Path(r'C:\Users\Nicolas\Documents\DataScience\MAR24_BDS_Radios_Pulmonaire\src\streamlit\pictures')
+base_path = Path.cwd()
+streamlit_path = Path.cwd() / 'src' / 'streamlit'
+images = streamlit_path / 'pictures'
 
 
 # Définir le chemin vers le dossier contenant les images pour l'animation
-images_animation_lungs = r'C:\Users\Nicolas\Documents\DataScience\MAR24_BDS_Radios_Pulmonaire\src\streamlit\pictures\COVID_lung_animation'
+images_animation_lungs = images / 'COVID_lung_animation'
 
 # Fonction pour extraire les numéros des noms de fichiers
 def extract_number(filename):
@@ -34,7 +36,16 @@ image_files = sorted([os.path.join(images_animation_lungs, file) for file in os.
 covid_markdown_intro = """
 # COVID-19 Overview
 
-**COVID-19**, caused by SARS-CoV-2, emerged in late 2019 and quickly became a global pandemic. It spreads through respiratory droplets and causes symptoms ranging from mild (fever, cough, fatigue) to severe (difficulty breathing, ARDS). Severe cases, especially in older adults and those with underlying conditions, can lead to death.
+**COVID-19**, caused by SARS-CoV-2, emerged in late 2019 and quickly became a 
+global pandemic. It spreads through respiratory droplets and causes symptoms 
+ranging from mild (fever, cough, fatigue) to severe (difficulty breathing, ARDS). 
+It mainly affects the lungs and severe cases, especially in older adults and 
+those with underlying conditions, can lead to death. It posed a significant
+healthcare problem, with a quick spread and a saturation of healtcare facilities.
+
+**One of the most important issue was a rapid diagnostic of the condition**, as it
+was not only a way to reduce the spread (isolation) and to better take care of
+the patient.
 """
 
 
@@ -46,13 +57,13 @@ covid_markdown_health="""
 
 - **Lung Damage**
 
-- **Long Recovery**
+- Long Recovery
 """
 
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 
 covid_markdown_lungs="""
-As the infection progresses, lesions start to appear on the lungs :S
+As the infection progresses, lesions start to appear on the lungs :
 """
 
 
@@ -62,15 +73,12 @@ As the infection progresses, lesions start to appear on the lungs :S
 covid_markdown_diagnostic = """
 ## COVID-19 Diagnostic
 
-- ** ELISA Tests ** : **Quick** (15 minutes) but **low specificity**
+- **ELISA TESTS** : **Quick** (15 minutes) but **low specificity**
 
-- ** PCR ** : **Long** (a day) with **average to high specificity**, not available everywhere
+- **PCR** : **Long** (a day) with **average to high specificity**, not available everywhere
 
-- ** Radiology ** : **Quick** (15 minutes), available in every healthcare facility
+- **RADIOLOGY** : **Quick** (15 minutes), available in every healthcare facility
 """
-
-
-
 
 
 
