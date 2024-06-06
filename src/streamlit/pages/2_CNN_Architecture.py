@@ -4,7 +4,7 @@ from graphviz import Digraph
 import os
 
 # Set the page title
-st.set_page_config(page_title="CNN Architecture", page_icon=":construction:",)
+st.set_page_config(page_title="CNN Architecture", page_icon=":construction:", layout="wide")
 
 # Title and description
 st.title("Convolutional Neural Network Architecture")
