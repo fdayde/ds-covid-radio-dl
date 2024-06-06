@@ -23,7 +23,7 @@ logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG"
 # Main title
 st.title("Modeling Process")
 st.sidebar.title("Modeling Process")
-pages = ["Unfolding", "Images pre-processing", "Transfer Learning", "Training", "Evaluation", "Choosing the best model"]
+pages = ["Unfolding", "Images pre-processing", "Transfer Learning", "Training", "Interpretability", "Evaluation of models"]
 page = st.sidebar.radio("Summary", pages, label_visibility="collapsed")
 
 if page == "Unfolding":
@@ -60,12 +60,12 @@ if page == "Training":
     st.markdown("")
 
 
-if page == "Evaluation":
+if page == "Interpretability":
     st.header("Evaluation", divider = 'rainbow')
     st.markdown("")
 
 
-if page == "Choosing the best model":
+if page == "Evaluation of models":
     st.header("Choosing the best model", divider = 'rainbow')
     st.markdown("")
 
@@ -75,7 +75,7 @@ st.header(" ", divider = 'rainbow')
 hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
 
 with hcol1:
-    st.markdown("""Thomas Barret  
+    st.markdown("""Thomas Baret  
                     Nicolas Bouzinbi  
                      Florent Daydé  
                      Nicolas Fenassile""")
