@@ -119,7 +119,7 @@ if page == "Interpretability":
 if page == "Evaluation of models":
     st.header("Choosing the best model", divider = 'rainbow')
 
-    st.write("### Models performances summary")
+    st.write("### Models' performances summary")
     table_md, conclusion_md = choose_best_model()
     st.markdown(table_md)
     st.markdown("<br>", unsafe_allow_html=True) 
