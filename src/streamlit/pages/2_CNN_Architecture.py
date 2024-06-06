@@ -138,3 +138,4 @@ if architecture == "Simple CNN":
     simple_cnn_diagram()
 else:
     simplified_densenet201_diagram()
+
