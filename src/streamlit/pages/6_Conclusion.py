@@ -1,14 +1,6 @@
 import streamlit as st
 from pathlib import Path
 import os
-from PIL import Image
-import re
-import plotly.express as px
-import pandas as pd
-import plotly.figure_factory as ff
-import matplotlib.pyplot as plt
-import plotly.graph_objects as go
-import base64
 
 
 
