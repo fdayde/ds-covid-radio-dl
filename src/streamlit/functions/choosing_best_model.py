@@ -1,6 +1,5 @@
-import streamlit as st
 import pandas as pd
-
+import plotly.graph_objects as go
 
 def table_markdown():
     table_md = """
@@ -53,5 +52,25 @@ data_classification_report = {
     "masques": [1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0]
 }
 
-df_clasif_rport = pd.DataFrame(data_classification_report)
+df_clasif_report = pd.DataFrame(data_classification_report)
+
+def create_accuracy_plot(data=df_accuracy_global):
+    fig = go.Figure()
+
+    # Add traces for each combination of masques and model
+    for masque_value in set(data["masques"]):
+        for model_name in set(data["model"]):
+            filtered_data = data[(data["masques"] == masque_value) & (data["model"] == model_name)]
+            fig.add_trace(go.Bar(x=filtered_data["model"], y=filtered_data["Accuracy"], 
+                                    name=f"Masques={masque_value}, Model={model_name}"))
+
+    # Update layout
+    fig.update_layout(
+        title="Accuracy by Model and Masques",
+        xaxis_title="Model",
+        yaxis_title="Accuracy",
+        hovermode="closest"
+    )
+
+    return fig
 

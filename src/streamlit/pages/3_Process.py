@@ -1,6 +1,5 @@
 import streamlit as st
-from functions.choosing_best_model import choose_best_model  # Import the function
-
+from functions.choosing_best_model import choose_best_model, create_accuracy_plot
 st.set_page_config(
     page_title="Modeling Process",
     page_icon=":page_facing_up:",
@@ -57,3 +56,7 @@ if st.checkbox("Step 8: Choosing the Best Model"):
     st.markdown(table_md)
     st.markdown("<br>", unsafe_allow_html=True) 
     st.markdown(conclusion_md)
+    
+    # Display the Plotly figure
+    fig = create_accuracy_plot()
+    st.plotly_chart(fig)
