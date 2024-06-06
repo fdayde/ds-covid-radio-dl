@@ -1,6 +1,22 @@
 import streamlit as st
 import os
 
+st.set_page_config(page_title="CNN", layout="wide")
+
+st.markdown("""
+        <style>
+               .block-container {
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+                    padding-left: 10rem;
+                    padding-right: 10rem;
+                }
+        </style>
+        """, unsafe_allow_html=True)
+
+logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG")
+
+
 # CNN images path
 input_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "input_data.webp")
 # https://medium.com/@raycad.seedotech/convolutional-neural-network-cnn-8d1908c010ab
@@ -85,8 +101,7 @@ cnn_concepts = [
     architecture_img_path
 ]
 
-# Set the page title
-st.set_page_config(page_title="CNN", layout="wide")
+
 
 # Title and description
 st.title("Convolutional Neural Network")
@@ -117,3 +132,19 @@ if st.sidebar.button('Prev'):
         st.session_state.index = 0
     else:
         st.session_state.index -= 1
+
+
+# Footer
+st.header(" ", divider = 'rainbow')
+hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
+
+with hcol1:
+    st.markdown("""Thomas Baret  
+                    Nicolas Bouzinbi  
+                     Florent Daydé  
+                     Nicolas Fenassile""")
+with hcol2:
+    st.markdown(" ")
+
+with hcol3:
+    st.image(logo_path, use_column_width=True)

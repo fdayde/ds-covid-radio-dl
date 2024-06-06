@@ -1,5 +1,9 @@
 import pandas as pd
 import plotly.graph_objects as go
+import networkx as nx
+import matplotlib.pyplot as plt
+from sklearn.neighbors import NearestNeighbors
+import numpy as np
 
 def table_markdown():
     table_md = """
@@ -17,7 +21,7 @@ def table_markdown():
     return table_md
 
 def model_choice():
-    ccl_md = """The **DenseNet201** has the best treade-off between performance and interpretability."""
+    ccl_md = """The **DenseNet201** has the best trade-off between performance and interpretability."""
     return ccl_md
 
 def choose_best_model():
@@ -73,4 +77,73 @@ def create_accuracy_plot(data=df_accuracy_global):
     )
 
     return fig
+
+
+
+def knn_model_similarity(data=df_clasif_report):
+    """
+    Calculate the similarity between models using k-Nearest Neighbors.
+
+    Parameters:
+    - data (DataFrame): DataFrame containing classification report data.
+
+    Returns:
+    - neighbors (dict): Dictionary containing the indices of the nearest neighbors for each model.
+    """
+    # Select relevant columns for k-NN
+    features = data[['Precision', 'Recall', 'f1-score', 'Support']]
+
+    # Normalize features
+    normalized_features = (features - features.mean()) / features.std()
+
+    # Fit k-NN model
+    nn_model = NearestNeighbors(n_neighbors=5, algorithm='auto')
+    nn_model.fit(normalized_features)
+
+    # Find nearest neighbors for each model
+    neighbors = {}
+    for i, model in enumerate(data['model']):
+        _, indices = nn_model.kneighbors([normalized_features.iloc[i]])
+        neighbors[model] = data.iloc[indices[0]].index.tolist()
+
+    return neighbors
+
+
+
+def plot_model_similarity_graph(neighbors):
+    """
+    Plot the similarity between models based on k-Nearest Neighbors.
+
+    Parameters:
+    - neighbors (dict): Dictionary containing the indices of the nearest neighbors for each model.
+    """
+    # Create a directed graph
+    G = nx.DiGraph()
+
+    # Add edges between nearest neighbors
+    for model, neighbor_indices in neighbors.items():
+        for neighbor_index in neighbor_indices:
+            neighbor_model = df_clasif_report.loc[neighbor_index, 'model']
+            G.add_edge(model, neighbor_model)
+
+    # Plot the graph
+    plt.figure(figsize=(10, 6))
+    pos = nx.spring_layout(G, seed=42)  # Define the layout
+    nx.draw(G, pos, with_labels=True, node_size=3000, node_color='skyblue', font_size=10, font_weight='bold', arrowsize=20)
+    plt.title('Model Similarity Graph')
+    # plt.show()
+    return plt.gcf()
+
+
+
+# revoir le knn (sens, ajouter nb de parametres ou couches ?)
+# + revoir les titres
+# accuracy globale : mettre y commence à 0.5
+# mettre le footer dansune fonction ? ds un 2eme temps 
+
+# - une page interprétabilité avec gradcam display d'un mauvais gradcam et d'un bon gradcam 
+# idealement sur la meme image masquee et non masquee  
+# - fusionner 7 et 8 
+
+# - training : retravailler les epochs sur une figure 
 
