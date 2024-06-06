@@ -109,21 +109,6 @@ if page == "Dataset Analysis":
         st.markdown("""Mask associated""")
         mask_path6 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "Normal", "lung masks", "Normal (8398).png")
         st.image(mask_path6, caption="Normal (8398).png")
-    
-    st.header(" ", divider = 'rainbow')
-
-    hcol1, hcol2, hcol3 = st.columns([0.1, 0.6, 0.3])
-
-    with hcol1:
-        st.markdown("""Thomas Barret  
-                    Nicolas Bouzinbi  
-                     Florent Daydé  
-                     Nicolas Fenassile""")
-    with hcol2:
-        st.markdown(" ")
-
-    with hcol3:
-        st.image(logo_path, use_column_width=True)
 
 if page == "Data Visualization":
     st.header("Data Visualization", divider = 'rainbow')
@@ -154,17 +139,17 @@ if page == "Data Visualization":
                     This tends to show that COVID-infected lungs have clear light areas compared to healthy lungs and other infections.
                     """)
         
-    st.header(" ", divider = 'rainbow')
+# Footer
+st.header(" ", divider = 'rainbow')
+hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
 
-    hcol1, hcol2, hcol3 = st.columns([0.1, 0.6, 0.3])
-
-    with hcol1:
-        st.markdown("""Thomas Barret  
+with hcol1:
+    st.markdown("""Thomas Barret  
                     Nicolas Bouzinbi  
-                    Florent Daydé  
-                    Nicolas Fenassile""")
-    with hcol2:
-        st.markdown(" ")
+                     Florent Daydé  
+                     Nicolas Fenassile""")
+with hcol2:
+    st.markdown(" ")
 
-    with hcol3:
-        st.image(logo_path, use_column_width=True)
+with hcol3:
+    st.image(logo_path, use_column_width=True)
