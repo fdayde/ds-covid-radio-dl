@@ -29,9 +29,9 @@ def choose_best_model():
 
 
 data_accuracy_global = {
-    "model": ["VGG19", "VGG19", "MobileNetV2", "MobileNetV2", "DenseNet201", "DenseNet201", "Xception"],
-    "masques": [1, 0, 1, 0, 1, 0, 0],
-    "Accuracy": [0.92, 0.94, 0.86, 0.93, 0.91, 0.96, 0.96]
+    "model": ["VGG19", "VGG19", "MobileNetV2", "MobileNetV2", "DenseNet201", "DenseNet201", "Xception", "Xception"],
+    "masques": [1, 0, 1, 0, 1, 0, 1, 0],
+    "Accuracy": [0.916, 0.937, 0.858, 0.933, 0.911, 0.959, 0.903, 0.961]
 }
 
 df_accuracy_global = pd.DataFrame(data_accuracy_global)
