@@ -144,7 +144,7 @@ st.header(" ", divider = 'rainbow')
 hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
 
 with hcol1:
-    st.markdown("""Thomas Barret  
+    st.markdown("""Thomas Baret  
                     Nicolas Bouzinbi  
                      Florent Daydé  
                      Nicolas Fenassile""")
