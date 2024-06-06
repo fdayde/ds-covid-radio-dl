@@ -103,7 +103,7 @@ discussion_markdown_summary_adv="""
 
 :large_green_circle: The chosen model performs well and is equivalent on all three classes 
 
-:large_green_circle: The recall and f1 scores on all images (masked or not) are superior to 90%
+:large_green_circle: The recall and f1 scores on all images (masked or not) are superior to 90%, same numbers as PCR
 
 :large_green_circle: No overfitting or very few
 
@@ -133,7 +133,7 @@ discussion_markdown_what_next="""
 
 - The model needs more training, even more so with the masked images
 
-- Impossible to correctly do Deep Learning without more resources : :X: Kaggle (30h not enough), :X: Google Colab (not enough units), :X: not enough money to buy a Deep Learning
+- Impossible to correctly do Deep Learning without more resources : :x: Kaggle (30h not enough), :x: Google Colab (not enough units), :x: not enough money to buy a Deep Learning
 ready rig...
 
 """
