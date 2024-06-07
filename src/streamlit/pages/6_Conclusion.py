@@ -55,23 +55,16 @@ logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG"
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 
 improving_model_markdown_hp ="""
-
-### Tuning the model : Hyperparameters
-
 - Raise the DropOut rate
 
 - Add L1 and L2 layers
 
 - Optimize the batch size
-
-
 """
 
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 
 improving_model_markdown_data ="""
-
-### Tuning the model : Data
 
 - Data Augmentation
 
@@ -84,10 +77,8 @@ improving_model_markdown_data ="""
 
 improving_model_markdown_tf ="""
 
-### Tuning the model : Transfer Learning
-
-We only used base models which were natively in Keras. With a little more time and computing power, we could have implemented other models, such as ChexNet.
-
+We only used base models which were natively in Keras.  
+With a little more time and computing power, we could have implemented other models, such as ChexNet.
 
 """
 
@@ -95,11 +86,8 @@ We only used base models which were natively in Keras. With a little more time a
 
 improving_model_markdown_int ="""
 
-### Interpretability
-
 The lung masks are essential to steer the model on the lungs : it focuses too much on peripheral artefacts without masks. Neverthless, it affects the performance 
-negatively.
-
+negatively.  
 We also used the masks provided with the dataset : for a complete application, a lung segmentation step should be added.
 
 
@@ -151,27 +139,31 @@ ready rig...
 st.sidebar.title("Conclusion")
 pages = ["Improving The Model", "Discussion"]
 page = st.sidebar.radio("Summary", pages, label_visibility="collapsed")
+st.title("Conclusion")
 
 if page == "Improving The Model":
-    st.header("Conclusion", divider = 'rainbow')
-    st.subheader("What can we do to improve the model", divider = 'grey')
+    st.header("Improving The Model", divider = 'rainbow')
+    st.markdown("Although we achieved a good accuracy and an interpretable model, they are still ways to improve our model further:")
+    for _ in range(3):
+        st.write("")
     row1_col1, row1_col2 = st.columns(2)
     with row1_col1:
-        st.subheader("", divider = 'grey')
+        st.subheader("Tuning the model : Hyperparameters", divider = 'grey')
         st.markdown(improving_model_markdown_hp, unsafe_allow_html=True)
+        for _ in range(3):
+            st.write("")
     with row1_col2:
-        st.subheader("", divider = 'grey')
+        st.subheader("Improve the model : Data", divider = 'grey')
         st.markdown(improving_model_markdown_data, unsafe_allow_html=True)
+        for _ in range(3):
+            st.write("")
     row2_col1, row2_col2 = st.columns(2)
     with row2_col1:
-        st.subheader("", divider = 'grey')
-        for _ in range(4):
-            st.write("")
+        st.subheader("Tuning the model : Transfer Learning", divider = 'grey')
+        
         st.markdown(improving_model_markdown_tf, unsafe_allow_html=True)
     with row2_col2:
-        st.subheader("", divider = 'grey')
-        for _ in range(4):
-            st.write("")
+        st.subheader("Interpretability", divider = 'grey')
         st.markdown(improving_model_markdown_int, unsafe_allow_html=True)
 
 if page == "Discussion":
@@ -183,6 +175,8 @@ if page == "Discussion":
     with col2:
         st.subheader("Cons", divider = 'grey')
         st.markdown(discussion_markdown_summary_inc)
+        for _ in range(3):
+            st.write("")
     st.subheader("To go further : What next", divider = 'grey')
     st.markdown(discussion_markdown_what_next)
 
