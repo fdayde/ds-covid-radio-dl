@@ -136,6 +136,8 @@ discussion_markdown_what_next="""
 - Impossible to correctly do Deep Learning without more resources : :x: Kaggle (30h not enough), :x: Google Colab (not enough units), :x: not enough money to buy a Deep Learning
 ready rig...
 
+- Tensorflow vs Pytorch 
+
 """
 
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
@@ -167,7 +169,7 @@ if page == "Improving The Model":
         st.markdown(improving_model_markdown_int, unsafe_allow_html=True)
 
 if page == "Discussion":
-    st.header("Discussion", divider = 'rainbow')
+    st.header("Conclusion", divider = 'rainbow')
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Pros", divider = 'grey')
