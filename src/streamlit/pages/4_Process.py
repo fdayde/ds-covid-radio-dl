@@ -179,37 +179,41 @@ The data has already been divided into 3 sets : Train, Validation and Test. The 
 
 
 if page == "Interpretability":
-    st.header("Evaluation", divider = 'rainbow')
-    st.subheader("What is Grad-CAM?", divider = 'gray')
-    st.markdown("""
+    st.header("Interpretation", divider = 'rainbow')
+    col1, col2, col3 = st.columns([0.35,0.15,0.5])
+    with col1:
+        st.subheader("What is Grad-CAM?", divider = 'gray')
+        st.markdown("""
 Grad-CAM (Gradient-weighted Class Activation Mapping) helps visualize which parts of an image a CNN focuses on when making a prediction.""")
-    st.subheader("Why Use Grad-CAM?", divider = 'gray')
-    st.markdown("""
+        st.subheader("Why Use Grad-CAM?", divider = 'gray')
+        st.markdown("""
 - **Debugging Models**: Check if the model focuses on correct image parts.
 - **Understanding Errors**: See why a model made a wrong prediction.
 - **Transparency**: Provide interpretable explanations for model predictions.
 """)
-
-    st.subheader("Example Visualization", divider = 'gray')
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex_nomask.png"), 
-                 caption="Grad-CAM on Non-Masked Image", width=300)
-        st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex2_nomask.png"),
-                caption="Grad-CAM on Non-Masked Image", width=300)
-
-    with col2:
-        st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex_mask.png"), 
-                 caption="Grad-CAM on Masked Image", width=300)
-        st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex2_mask.png"), 
-                 caption="Grad-CAM on Masked Image", width=300)
-
-    st.subheader("Conclusion", divider = 'gray')
-    st.markdown("""
+        for _ in range(10):
+            st.write("")
+        st.subheader("Conclusion", divider = 'gray')
+        st.markdown("""
 Grad-CAM offers a simple yet powerful way to interpret CNN decisions, improving model transparency and trustworthiness.
 """)
+
+    with col3:
+        st.subheader("Example Visualization", divider = 'gray')
+        scol1, scol2 = st.columns([0.5, 0.5])
+
+        with scol1:
+            st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex_nomask.png"), 
+                    caption="Grad-CAM on Non-Masked Image")
+            st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex2_nomask.png"),
+                    caption="Grad-CAM on Non-Masked Image")
+
+        with scol2:
+            st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex_mask.png"), 
+                    caption="Grad-CAM on Masked Image")
+            st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex2_mask.png"), 
+                    caption="Grad-CAM on Masked Image")
+
 
 
 if page == "Evaluation of models":
