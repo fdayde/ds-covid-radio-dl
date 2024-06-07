@@ -13,15 +13,16 @@ st.set_page_config(
 st.markdown("""
         <style>
                .block-container {
-                    padding-top: 1rem;
-                    padding-bottom: 1rem;
-                    padding-left: 10rem;
-                    padding-right: 10rem;
+                    padding-top: 3rem;
+                    padding-bottom: 3rem;
+                    padding-left: 25rem;
+                    padding-right: 25rem;
                 }
         </style>
         """, unsafe_allow_html=True)
 
 st.title("Data Science Project: COVID Lung X-Rays Classification")
+st.header(" ", divider = 'rainbow')
 
 base_path = Path.cwd()
 images = base_path / 'pictures'
