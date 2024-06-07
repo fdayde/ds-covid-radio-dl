@@ -5,7 +5,7 @@ from PIL import Image
 import re
 import pandas as pd
 import plotly.graph_objects as go
-
+import base64
 
 st.set_page_config(
     page_title="Introduction",
@@ -81,24 +81,16 @@ the patient.
 
 covid_markdown_health="""
 
-- **Inflammation** 
+### Inflammation 
 
-    COVID-19 can cause significant inflammation in the lungs, leading to swelling and 
-    irritation of the lung tissue. This inflammation is primarily due to the body's immune response to the virus.
 
-- **Pneumonia**
+### Pneumonia
 
-    COVID-19 can lead to viral pneumonia, where the air sacs (alveoli) in the lungs become inflamed and filled 
-    with fluid or pus. This can cause severe breathing difficulties and reduce oxygen levels in the blood.
 
-- **Lung Damage**
+### Lung Damage
 
-    The severe inflammation and pneumonia caused by COVID-19 can result in lasting lung damage. This includes 
-    scarring (fibrosis) and long-term loss of lung function, which can persist even after recovery from the acute phase of the illness.
 
-- Long Recovery
-    Recovery from severe COVID-19 lung involvement can be prolonged. Patients may experience lingering symptoms such as fatigue, 
-    shortness of breath, and reduced lung capacity for weeks or months after the infection has cleared.
+### Long Recovery
 """
 
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
@@ -165,41 +157,46 @@ if page == "Context : COVID":
 
     ## Séparer l'image et le texte dans 2 colonnes différentes pour les afficher côtes-à-côtes
     col1, col2 = st.columns(2)
+
     with col1:
-        st.subheader("Lung Impact", divider = 'grey')
-        st.markdown(covid_markdown_health)
-    with col2:
         st.subheader("", divider = 'grey')
         st.image(str(images / 'COVID19_lung_impact.jpg'), caption = 'COVID19 action on lungs, drawn by Brooke Ring', use_column_width=True)
 
-    for _ in range(2):
-        st.write("")
-
-    st.subheader("", divider = 'grey')
-
-    st.markdown(covid_markdown_lungs)
-
-    ## Animation de l'évolution d'un poumon de patient COVID dans le temps
-
-    ## Initialiser l'index de l'image
-    if 'image_index' not in st.session_state:
-        st.session_state.image_index = 0
-    
-    ## Afficher l'image actuelle
-    image_path = image_files[st.session_state.image_index]
-    image = Image.open(image_path)
-    st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-    # Create three columns
-    col1, col2, col3 = st.columns([1,2,1])
-    # Using the middle column to place the image
     with col2:
-        st.image(image, caption=f'Image {st.session_state.image_index + 1}/{len(image_files)}', use_column_width=False)
-    st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+        st.subheader("", divider = 'grey')
+        ## Animation de l'évolution d'un poumon de patient COVID dans le temps
 
-    st.write("<div style='text-align: center;'>" "Lungs X-Rays of a COVID-19 patient : Evolution, Rousan L.A. et a., 2020", unsafe_allow_html=True)
+        # Fonction pour charger une image
+        def load_image(image_path):
+            return Image.open(image_path)
 
-    ## Slider to control the image index
-    st.session_state.image_index = st.slider("Image Index", 0, len(image_files) - 1, st.session_state.image_index, step=1)
+        # Initialiser l'index de l'image dans la session de Streamlit
+        if 'img_index' not in st.session_state:
+            st.session_state.img_index = 0
+
+        # Afficher l'image actuelle
+        current_image = load_image(os.path.join(images_animation_lungs, image_files[st.session_state.img_index]))
+        st.image(current_image, caption=f"Image {st.session_state.img_index + 1} sur {len(image_files)}")
+
+        # Boutons de navigation
+        col1, col2, col3 = st.columns([1, 1, 1])
+
+        with col1:
+            if st.button("Précédente"):
+                if st.session_state.img_index > 0:
+                    st.session_state.img_index -= 1
+
+        with col2:
+            st.write("")
+
+        with col3:
+            if st.button("Suivante"):
+                if st.session_state.img_index < len(image_files) - 1:
+                    st.session_state.img_index += 1
+    
+        st.write("Lungs X-Rays of a COVID-19 patient : Evolution, Rousan L.A. et a., 2020")
+
+        st.markdown(covid_markdown_lungs)
 
     st.subheader("COVID-19 Diagnostic", divider = 'grey')
 
@@ -207,9 +204,7 @@ if page == "Context : COVID":
 
 if page == "Context : Deep Learning":
     st.header("Introduction", divider = 'rainbow')
-    st.subheader("Machine Learning and Deep Learning Overview", divider = 'grey')
-    st.markdown(deep_learning_markdown)
-    st.subheader("", divider = 'grey')
+
     # Data for the timeline
     data = {
         "Year": [
