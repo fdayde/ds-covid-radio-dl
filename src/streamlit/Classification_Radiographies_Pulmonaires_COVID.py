@@ -1,8 +1,5 @@
 import streamlit as st
 from pathlib import Path
-import base64
-import os
-from PIL import Image
 
 st.set_page_config(
     page_title="DS Project",

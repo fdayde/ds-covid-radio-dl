@@ -1,6 +1,7 @@
 from functions.choosing_best_model import df_clasif_report, choose_best_model, create_accuracy_plot, plot_model_similarity_graph, knn_model_similarity
 import streamlit as st
 import os
+import xml.etree.ElementTree as ET
 
 st.set_page_config(
     page_title="Modeling Process",
@@ -20,6 +21,10 @@ st.markdown("""
         """, unsafe_allow_html=True)
 
 logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG")
+diagram_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_process.SVG")
+overfitting_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Overfitting.png")
+training_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_plot.png")
+
 
 unfolding_markdown = """
 As we have seen previously, the first essential step before delving into deep learning is pre-processing our data. 
@@ -155,7 +160,22 @@ for layer in base_model.layers[137:] # Unfreezing the last two convolutional blo
 
 if page == "Training":
     st.header("Training", divider = 'rainbow')
-    st.markdown("")
+    st.subheader("Principle", divider = 'grey')
+    st.markdown("""
+The data has already been divided into 3 sets : Train, Validation and Test. The model will use the Train and Validation test for the training.""")
+    st.write("")
+    col1, col2, col3 = st.columns([1,2,1]) 
+    with col2:
+        with open(diagram_path, "r") as training_process:
+            svg_content = training_process.read()
+        st.image(svg_content, use_column_width=False)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("Example of Overfitting", divider = 'grey')
+        st.image(overfitting_path, caption='Example of overfitting DenseNet201')
+    with  col2:
+        st.subheader("Training plots", divider = 'grey')
+        st.image(training_path, caption='Accuracy and Loss Functions VGG19')
 
 
 if page == "Interpretability":
@@ -204,13 +224,16 @@ if page == "Evaluation of models":
     fig = create_accuracy_plot()
     st.plotly_chart(fig)
 
-    st.subheader("Classification Report Metrics", divider = 'gray')
-    # similarity graph
-    nb_neighbors = st.number_input("Number of Neighbors for KNN", min_value=1, max_value=10, value=3, step=1) # nb of neighbors for knn
-    neighbors = knn_model_similarity(nb_neighbors=nb_neighbors)
-    st.pyplot(plot_model_similarity_graph(neighbors, nb_neighbors=nb_neighbors))
-    # Display the DataFrame
-    st.write(df_clasif_report)
+
+    # Checkbox to hide/show the Classification Report Metrics section
+    if st.checkbox(":gift: Show Classification Report Metrics & Models' Similarity"):
+        st.subheader("Classification Report Metrics", divider = 'gray')
+        # similarity graph
+        nb_neighbors = st.number_input("Number of Neighbors for KNN", min_value=1, max_value=10, value=3, step=1) # nb of neighbors for knn
+        neighbors = knn_model_similarity(nb_neighbors=nb_neighbors)
+        st.pyplot(plot_model_similarity_graph(neighbors, nb_neighbors=nb_neighbors))
+        # Display the DataFrame
+        st.write(df_clasif_report)
 
 
 
