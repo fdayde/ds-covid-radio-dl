@@ -29,9 +29,9 @@ def choose_best_model():
 
 
 data_accuracy_global = {
-    "model": ["VGG19", "VGG19", "MobileNetV2", "MobileNetV2", "DenseNet201", "DenseNet201", "Xception"],
-    "masques": [1, 0, 1, 0, 1, 0, 0],
-    "Accuracy": [0.92, 0.94, 0.86, 0.93, 0.91, 0.96, 0.96]
+    "model": ["VGG19", "VGG19", "MobileNetV2", "MobileNetV2", "DenseNet201", "DenseNet201", "Xception", "Xception"],
+    "masked": [1, 0, 1, 0, 1, 0, 1, 0],
+    "Accuracy": [0.916, 0.937, 0.858, 0.933, 0.911, 0.959, 0.903, 0.961]
 }
 
 df_accuracy_global = pd.DataFrame(data_accuracy_global)
@@ -51,7 +51,7 @@ data_classification_report = {
               "MobileNetV2", "MobileNetV2", "MobileNetV2", "MobileNetV2", "MobileNetV2", "MobileNetV2",
               "DenseNet201", "DenseNet201", "DenseNet201", "DenseNet201", "DenseNet201", "DenseNet201",
               "Xception", "Xception", "Xception"],
-    "masques": [1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0]
+    "masked": [1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0]
 }
 
 df_clasif_report = pd.DataFrame(data_classification_report)
@@ -70,23 +70,23 @@ def create_accuracy_plot(data=df_accuracy_global):
         ("Xception", 1): "#ffdc7c"    # Light yellow
     }
 
-    # Add traces for each combination of masques and model
-    for masque_value in set(data["masques"]):
+    # Add traces for each combination of masked and model
+    for masque_value in set(data["masked"]):
         for model_name in set(data["model"]):
-            filtered_data = data[(data["masques"] == masque_value) & (data["model"] == model_name)]
+            filtered_data = data[(data["masked"] == masque_value) & (data["model"] == model_name)]
             color = custom_colors.get((model_name, masque_value), "blue")
             fig.add_trace(go.Bar(x=filtered_data["model"], y=filtered_data["Accuracy"], 
-                                    name=f"Masques={masque_value}, Model={model_name}",
+                                    name=f"masked={masque_value}, Model={model_name}",
                                     marker=dict(color=color)
                                     ))
 
     fig.update_layout(
-        title="Accuracy by Model and Masques",
+        title="Accuracy by Model and masked status",
         xaxis_title="Model",
         yaxis_title="Accuracy",
         hovermode="closest"
     )
-    fig.update_yaxes(range=[0.5, 1])
+    fig.update_yaxes(range=[0.75, 1])
 
     return fig
 
