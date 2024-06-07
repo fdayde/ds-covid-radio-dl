@@ -21,7 +21,7 @@ def table_markdown():
     return table_md
 
 def model_choice():
-    ccl_md = """The **DenseNet201** has the best trade-off between performance and interpretability."""
+    ccl_md = """The **DenseNet201** has the best trade-off between performance and interpretability, especially on masked images."""
     return ccl_md
 
 def choose_best_model():
