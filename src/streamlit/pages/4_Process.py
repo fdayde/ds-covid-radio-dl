@@ -164,12 +164,16 @@ Grad-CAM (Gradient-weighted Class Activation Mapping) helps visualize which part
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image("src\streamlit\pictures\grad_cam_ex_nomask.png", caption="Grad-CAM on Non-Masked Image", width=300)
-        st.image("src\streamlit\pictures\grad_cam_ex2_nomask.png", caption="Grad-CAM on Non-Masked Image", width=300)
+        st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex_nomask.png"), 
+                 caption="Grad-CAM on Non-Masked Image", width=300)
+        st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex2_nomask.png"),
+                caption="Grad-CAM on Non-Masked Image", width=300)
 
     with col2:
-        st.image("src\streamlit\pictures\grad_cam_ex_mask.png", caption="Grad-CAM on Masked Image", width=300)
-        st.image("src\streamlit\pictures\grad_cam_ex2_mask.png", caption="Grad-CAM on Masked Image", width=300)
+        st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex_mask.png"), 
+                 caption="Grad-CAM on Masked Image", width=300)
+        st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex2_mask.png"), 
+                 caption="Grad-CAM on Masked Image", width=300)
 
     st.markdown("""
 ## Conclusion
