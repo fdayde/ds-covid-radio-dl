@@ -11,8 +11,8 @@ st.set_page_config(
 st.markdown("""
         <style>
                .block-container {
-                    padding-top: 1rem;
-                    padding-bottom: 1rem;
+                    padding-top: 3rem;
+                    padding-bottom: 3rem;
                     padding-left: 10rem;
                     padding-right: 10rem;
                 }
@@ -40,6 +40,13 @@ They compiled all the data in the "COVID-QU-Ex dataset", which consists of 33,92
 
 Ground-truth lung segmentation masks are provided for the entire dataset.
 
+We also have a separation of the data in 3 sets: Train, Test and Val from the get-go.  
+We'll keep this separation when using the ImageGenerator as this approach allows us to:
+ - Train the model with the Training set: Utilize the training data to fit the model.
+ - Validate the model with the Validation set: Use the validation data to tune hyperparameters and make adjustments, ensuring the model performs well on unseen data.
+ - Evaluate the model with the Test set: Conduct the final assessment of the model's performance to ensure an unbiased evaluation.
+This practice is standard in machine learning and deep learning, providing a robust framework for model development and assessment.
+
 
 """
 
@@ -56,7 +63,9 @@ if page == "Dataset Analysis":
         st.markdown(" ")
         st.markdown("""We can see that radios are vastly different from each other.  
                     Some are very dark, others very light, we can find annotations on certain radios, and even rotated/dezoomed ones.  
-                    We can see some probes as well.""")  
+                    We can see some probes as well.  
+                    We can see a lot of "unwanted" information, that could potentially mislead a deep learning model.
+                    This is the reason why we will be investigating both full images and masked images for a deep learning model.""")  
         st.markdown(" ")
         st.markdown("""A preprocessing will be mandatory to smooth the data and get a better model.""")
 
