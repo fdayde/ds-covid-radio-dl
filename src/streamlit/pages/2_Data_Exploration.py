@@ -38,8 +38,6 @@ They compiled all the data in the "COVID-QU-Ex dataset", which consists of 33,92
 - 11,263 Non-COVID infections (Viral or Bacterial Pneumonia)
 - 10,701 Normal
 
-Ground-truth lung segmentation masks are provided for the entire dataset.
-
 We also have a separation of the data in 3 sets: Train, Test and Val from the get-go.  
 We'll keep this separation when using the ImageGenerator as this approach allows us to:
  - Train the model with the Training set: Utilize the training data to fit the model.
@@ -51,9 +49,9 @@ This practice is standard in machine learning and deep learning, providing a rob
 """
 
 if page == "Dataset Analysis":
-    st.header("Dataset", divider = 'rainbow')
+    st.header("Dataset Analysis", divider = 'rainbow')
     
-    column1, column2, column3, column4, column5, column6, column7 = st.columns([0.3, 0.05, 0.15, 0.15, 0.05, 0.15, 0.15])
+    column1, column2, column3, column4, column5, column6 = st.columns([0.40, 0.04, 0.14, 0.14, 0.14, 0.14])
 
     with column1:
         st.subheader("COVID-QU-Ex-Dataset", divider = 'grey')
@@ -95,9 +93,6 @@ if page == "Dataset Analysis":
         st.image(mask_path3, caption="Normal (3935).png")
 
     with column5:
-        st.markdown(" ")
-
-    with column6:
         st.markdown("Label: COVID")
         image_path4 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "COVID-19", "images", "covid_11.png")
         st.image(image_path4, caption="image covid_11.png")
@@ -108,7 +103,7 @@ if page == "Dataset Analysis":
         image_path6 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "Normal", "images", "Normal (8398).png")
         st.image(image_path6, caption="Normal (8398).png")
 
-    with column7:
+    with column6:
         st.markdown("""Mask associated""")
         mask_path4 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "COVID-19", "lung masks", "covid_11.png")
         st.image(mask_path4, caption="mask covid_11.png")
