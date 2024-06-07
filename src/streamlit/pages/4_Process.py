@@ -215,13 +215,15 @@ if page == "Evaluation of models":
     fig = create_accuracy_plot()
     st.plotly_chart(fig)
 
-    st.write("### Classification Report Metrics")
-    # similarity graph
-    nb_neighbors = st.number_input("Number of Neighbors for KNN", min_value=1, max_value=10, value=3, step=1) # nb of neighbors for knn
-    neighbors = knn_model_similarity(nb_neighbors=nb_neighbors)
-    st.pyplot(plot_model_similarity_graph(neighbors, nb_neighbors=nb_neighbors))
-    # Display the DataFrame
-    st.write(df_clasif_report)
+    # Checkbox to hide/show the Classification Report Metrics section
+    if st.checkbox(":gift: Show Classification Report Metrics & Models' Similarity"):
+        st.write("### Classification Report Metrics")
+        # similarity graph
+        nb_neighbors = st.number_input("Number of Neighbors for KNN", min_value=1, max_value=10, value=3, step=1) # nb of neighbors for knn
+        neighbors = knn_model_similarity(nb_neighbors=nb_neighbors)
+        st.pyplot(plot_model_similarity_graph(neighbors, nb_neighbors=nb_neighbors))
+        # Display the DataFrame
+        st.write(df_clasif_report)
 
 
 
