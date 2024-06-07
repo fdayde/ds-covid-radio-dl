@@ -1,14 +1,6 @@
 import streamlit as st
 from pathlib import Path
 import os
-from PIL import Image
-import re
-import plotly.express as px
-import pandas as pd
-import plotly.figure_factory as ff
-import matplotlib.pyplot as plt
-import plotly.graph_objects as go
-import base64
 
 
 
@@ -111,7 +103,7 @@ discussion_markdown_summary_adv="""
 
 :large_green_circle: The chosen model performs well and is equivalent on all three classes 
 
-:large_green_circle: The recall and f1 scores on all images (masked or not) are superior to 90%
+:large_green_circle: The recall and f1 scores on all images (masked or not) are superior to 90%, same numbers as PCR
 
 :large_green_circle: No overfitting or very few
 
@@ -141,8 +133,10 @@ discussion_markdown_what_next="""
 
 - The model needs more training, even more so with the masked images
 
-- Impossible to correctly do Deep Learning without more resources : :X: Kaggle (30h not enough), :X: Google Colab (not enough units), :X: not enough money to buy a Deep Learning
+- Impossible to correctly do Deep Learning without more resources : :x: Kaggle (30h not enough), :x: Google Colab (not enough units), :x: not enough money to buy a Deep Learning
 ready rig...
+
+- Tensorflow vs Pytorch 
 
 """
 
@@ -175,7 +169,7 @@ if page == "Improving The Model":
         st.markdown(improving_model_markdown_int, unsafe_allow_html=True)
 
 if page == "Discussion":
-    st.header("Discussion", divider = 'rainbow')
+    st.header("Conclusion", divider = 'rainbow')
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Pros", divider = 'grey')
