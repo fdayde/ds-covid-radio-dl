@@ -12,8 +12,8 @@ st.set_page_config(
 st.markdown("""
         <style>
                .block-container {
-                    padding-top: 1rem;
-                    padding-bottom: 1rem;
+                    padding-top: 3rem;
+                    padding-bottom: 3rem;
                     padding-left: 10rem;
                     padding-right: 10rem;
                 }
@@ -26,6 +26,20 @@ overfitting_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Ov
 training_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_plot.png")
 
 
+unfolding_markdown = """
+As we have seen previously, the first essential step before delving into deep learning is pre-processing our data. 
+This prepares our dataset for effective model training and evaluation.
+
+Once our data is ready, we can start with a quick test using a LeNet model to get an initial understanding of how our dataset performs in deep learning.
+
+Given that building and training a model from scratch is time-consuming, we will leverage transfer learning to accelerate the process. 
+By using pre-trained models, we can significantly reduce training time and improve performance.
+
+We will train several models and evaluate each one to select the best performer.
+We thus need to select the appropriate metric and ensure the model chosen is interpretable.
+This approach ensures we choose the most suitable model for our specific dataset and objectives.
+"""
+
 # Main title
 st.title("Modeling Process")
 st.sidebar.title("Modeling Process")
@@ -34,12 +48,12 @@ page = st.sidebar.radio("Summary", pages, label_visibility="collapsed")
 
 if page == "Unfolding":
     st.header("Unfolding", divider = 'rainbow')
-    col1, col2, col3 = st.columns([0.4, 0.1, 0.5])
+    col1, col2, col3= st.columns([0.4, 0.1, 0.5])
     with col1:
-        st.markdown("""As we have seen previously, the first step before starting deep learning will be a pre-processing of all the data.       
-                Then, once we have chosen a method, we can start by a quick LeNet model to have a first idea of how our dataset is behaving in deep learning.      
-                As it takes quite some time to build and train a model from scratch, we will be using transfer learning to accelerate process.
-                We will be training several models, which will be evaluated to select the best one. """)
+        st.markdown(unfolding_markdown)
+        st.subheader("Metric selected", divider = 'gray')
+        st.markdown("""As you will see during the presentation, we have chosen the accuracy to evaluate the model.  
+                    Since we have balanced data, it is a good general metric to ensure our predictions do not shift too much towards one label or another""")
     with col2:
         st.markdown(" ")
     with col3:
@@ -108,9 +122,8 @@ We chose to normalize the images with CLAHE because it provides a balanced appro
 
 if page == "Transfer Learning":
     st.header("Transfer Learning", divider = 'rainbow')
+    st.subheader("Fine-Tuning a Pre-trained Model: DenseNet201 Example", divider = 'gray')
     st.markdown("""
-### Fine-Tuning a Pre-trained Model: DenseNet201 Example
-
 Fine-tuning is a technique in transfer learning where a pre-trained model is adapted for a new task. Let's take DenseNet201 as an example. Here’s a simplified process focusing on unfreezing the last two convolutional blocks:
 
 - **Load Pre-trained Model**: Use DenseNet201 with pre-trained weights (e.g., ImageNet).""")
@@ -167,19 +180,17 @@ The data has already been divided into 3 sets : Train, Validation and Test. The 
 
 if page == "Interpretability":
     st.header("Evaluation", divider = 'rainbow')
+    st.subheader("What is Grad-CAM?", divider = 'gray')
     st.markdown("""
-## What is Grad-CAM?
-
-Grad-CAM (Gradient-weighted Class Activation Mapping) helps visualize which parts of an image a CNN focuses on when making a prediction.
-
-## Why Use Grad-CAM?
-
+Grad-CAM (Gradient-weighted Class Activation Mapping) helps visualize which parts of an image a CNN focuses on when making a prediction.""")
+    st.subheader("Why Use Grad-CAM?", divider = 'gray')
+    st.markdown("""
 - **Debugging Models**: Check if the model focuses on correct image parts.
 - **Understanding Errors**: See why a model made a wrong prediction.
 - **Transparency**: Provide interpretable explanations for model predictions.
 """)
 
-    st.markdown("## Example Visualization")
+    st.subheader("Example Visualization", divider = 'gray')
 
     col1, col2 = st.columns(2)
 
@@ -195,17 +206,15 @@ Grad-CAM (Gradient-weighted Class Activation Mapping) helps visualize which part
         st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex2_mask.png"), 
                  caption="Grad-CAM on Masked Image", width=300)
 
+    st.subheader("Conclusion", divider = 'gray')
     st.markdown("""
-## Conclusion
-
 Grad-CAM offers a simple yet powerful way to interpret CNN decisions, improving model transparency and trustworthiness.
 """)
 
 
 if page == "Evaluation of models":
     st.header("Choosing the best model", divider = 'rainbow')
-
-    st.write("### Models' performances summary")
+    st.subheader("Performances summary", divider = 'gray')
     table_md, conclusion_md = choose_best_model()
     st.markdown(table_md)
     st.markdown("<br>", unsafe_allow_html=True) 
@@ -215,9 +224,10 @@ if page == "Evaluation of models":
     fig = create_accuracy_plot()
     st.plotly_chart(fig)
 
+
     # Checkbox to hide/show the Classification Report Metrics section
     if st.checkbox(":gift: Show Classification Report Metrics & Models' Similarity"):
-        st.write("### Classification Report Metrics")
+        st.subheader("Classification Report Metrics", divider = 'gray')
         # similarity graph
         nb_neighbors = st.number_input("Number of Neighbors for KNN", min_value=1, max_value=10, value=3, step=1) # nb of neighbors for knn
         neighbors = knn_model_similarity(nb_neighbors=nb_neighbors)
