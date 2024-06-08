@@ -51,10 +51,12 @@ convolution_long_txt = """\n\n2 - **Convolution**:
 \n\nThis is done by performing element-wise multiplication and summing the results to produce a feature map. 
 \n\nEach neuron in the convolutional layer has its own set of weights (i.e., its own filter).
 \n\nEach convolutional layer has a number of parameters defined by: [the size of the kernel] X [the number of channels of the input] X [the number of channels of the output] X the bias,
-\n\nThe number of parameters is directly linked to the model's capacity to learn complex pattern in the data."""
+\n\nThe number of parameters is directly linked to the model's capacity to learn complex pattern in the data.
+\n\nThe filter weights are adjusted and updated through gradient backpropagation, allowing the model to learn from errors and improve its performance."""
 activation_long_txt = """\n\n3 - **Activation Function**: 
 \n\nAn activation function, often a Rectified Linear Unit (ReLU), is applied to the feature map. 
-\n\nReLU replaces negative values with zero and keeps positive values unchanged, introducing non-linearity to the model."""
+\n\nReLU replaces negative values with zero and keeps positive values unchanged, introducing non-linearity to the model.
+\n\nThis non-linearity allows the model to learn complex patterns and relationships within the data."""
 pooling_long_txt = """\n\n4 - **Pooling**: \n\nThe resulting feature maps are reduced in their dimensions with a pooling layer, commonly max pooling. 
 \n\nPooling summarizes the features by taking the maximum (or average) value in a specified window, reducing the spatial dimensions (height and width) 
 while retaining the most important features."""
