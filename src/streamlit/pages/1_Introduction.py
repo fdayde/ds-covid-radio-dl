@@ -48,7 +48,6 @@ page = st.sidebar.radio("Summary", pages, label_visibility="collapsed")
 # Chemin d'accès pour les images du Streamlit
 base_path = Path.cwd()
 images = base_path / 'pictures'
-banner_path = str(images / 'banner_streamlit.jpg')
 
 # Définir le chemin vers le dossier contenant les images pour l'animation
 images_animation_lungs = images / 'COVID_lung_animation'

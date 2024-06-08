@@ -41,7 +41,6 @@ hr {
 # Chemin d'accès pour les images du Streamlit
 base_path = Path.cwd()
 images = base_path / 'pictures'
-banner_path = str(images / 'banner_streamlit.jpg')
 
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 
