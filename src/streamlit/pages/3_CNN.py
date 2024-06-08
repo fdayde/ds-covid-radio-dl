@@ -19,28 +19,21 @@ st.markdown("""
 
 # CNN images path
 input_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "input_data.webp")
-# https://medium.com/@raycad.seedotech/convolutional-neural-network-cnn-8d1908c010ab
 relu_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "relu.png")
-# https://www.quora.com/What-is-the-ReLU-layer-in-CNN
 flatten_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "flatten.webp")
-# https://pub.mdpi-res.com/electronics/electronics-09-02152/article_deploy/html/images/electronics-09-02152-g013.png?1608039755
 dense_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "dense.webp")
-# https://av-eks-lekhak.s3.amazonaws.com/media/__sized__/article_images/fully_connected_layer-thumbnail_webp-600x300.webp
 architecture_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "cnn_architecture.png")
-# https://www.mathworks.com/videos/introduction-to-deep-learning-what-are-convolutional-neural-networks--1489512765771.html
 convolution_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "convolution.gif")
-# https://mlnotebook.github.io/post/CNN1/
 pooling_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "pooling.gif")
-# https://towardsdatascience.com/an-introduction-to-convolutional-neural-networks-bdf692352c7
-fullcnn_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "full_cnn.gif")
-# https://adatis.co.uk/wp-content/uploads/CNNsFullGifff.gif
-dropout_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "dropout.gif")
-# https://miro.medium.com/v2/resize:fit:640/format:webp/1*znOtHWgqnEtpXWk2iQcK-Q.gif
-earlystoping_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "early_stopping.webp")
-# https://miro.medium.com/v2/resize:fit:640/format:webp/1*nhmPdWSGh3ziatQKOmVq0Q.png
-dataaugmentation_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "data_augmentation.jpg")
-# https://www.sciencedirect.com/science/article/pii/S174680942100923X#f0010
 
+# image sources :
+# https://medium.com/@raycad.seedotech/convolutional-neural-network-cnn-8d1908c010ab
+# https://www.quora.com/What-is-the-ReLU-layer-in-CNN
+# https://pub.mdpi-res.com/electronics/electronics-09-02152/article_deploy/html/images/electronics-09-02152-g013.png?1608039755
+# https://av-eks-lekhak.s3.amazonaws.com/media/__sized__/article_images/fully_connected_layer-thumbnail_webp-600x300.webp
+# https://www.mathworks.com/videos/introduction-to-deep-learning-what-are-convolutional-neural-networks--1489512765771.html
+# https://mlnotebook.github.io/post/CNN1/
+# https://towardsdatascience.com/an-introduction-to-convolutional-neural-networks-bdf692352c7
 
 # CNN steps text :
 home_text = "CNN Steps"
