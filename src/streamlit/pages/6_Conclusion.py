@@ -91,7 +91,7 @@ discussion_markdown_summary_adv="""
 
 :large_green_circle: The recall and f1 scores on all images (masked or not) are superior to 90%, same numbers as PCR
 
-:large_green_circle: No overfitting or very few
+:large_green_circle: No or very little overfitting
 
 :large_green_circle: Good interpretability, the features selected are on the lungs for the most part on masked images
 
@@ -107,7 +107,7 @@ discussion_markdown_summary_inc="""
 
 :red_circle: Need for more customization on the model like custom metrics
 
-:red_circle: Not enought time/resources for the training
+:red_circle: Not enough time/resources for the training
 
 """
 
