@@ -1,7 +1,6 @@
 from functions.choosing_best_model import df_clasif_report, df_densenet_classif_report, table_markdown, create_accuracy_plot, plot_model_similarity_graph, knn_model_similarity
 import streamlit as st
 import os
-import xml.etree.ElementTree as ET
 from functions.footer import add_footer
 
 st.set_page_config(
