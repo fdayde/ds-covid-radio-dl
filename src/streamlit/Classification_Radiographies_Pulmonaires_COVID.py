@@ -26,7 +26,6 @@ st.header(" ", divider = 'rainbow')
 base_path = Path.cwd()
 images = base_path / 'pictures'
 banner_path = str(images / 'banner_streamlit.jpg')
-logo_path = str(images / 'logo.PNG')
 
 st.image(banner_path, use_column_width=True)
 

@@ -42,7 +42,6 @@ hr {
 base_path = Path.cwd()
 images = base_path / 'pictures'
 banner_path = str(images / 'banner_streamlit.jpg')
-logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG")
 
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 

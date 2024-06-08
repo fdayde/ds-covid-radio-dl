@@ -16,8 +16,6 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
-logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG")
-
 
 # CNN images path
 input_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "input_data.webp")

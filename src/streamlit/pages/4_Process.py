@@ -21,7 +21,6 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
-logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG")
 diagram_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_process.SVG")
 overfitting_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Overfitting.png")
 training_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_plot.png")

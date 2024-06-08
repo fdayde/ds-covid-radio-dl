@@ -21,8 +21,6 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
-logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG")
-
 st.title("Data Exploration")
 st.sidebar.title("Data Exploration")
 pages = ["Dataset Analysis", "Data Visualization"]
