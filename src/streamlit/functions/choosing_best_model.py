@@ -48,6 +48,8 @@ data_classification_report = {
 
 df_clasif_report = pd.DataFrame(data_classification_report)
 
+df_densenet_classif_report = df_clasif_report.loc[df_clasif_report.model == "DenseNet201"]
+
 def create_accuracy_plot(data=df_accuracy_global):
     fig = go.Figure()
 

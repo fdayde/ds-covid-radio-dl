@@ -1,4 +1,4 @@
-from functions.choosing_best_model import df_clasif_report, table_markdown, create_accuracy_plot, plot_model_similarity_graph, knn_model_similarity
+from functions.choosing_best_model import df_clasif_report, df_densenet_classif_report, table_markdown, create_accuracy_plot, plot_model_similarity_graph, knn_model_similarity
 import streamlit as st
 import os
 import xml.etree.ElementTree as ET
@@ -228,16 +228,21 @@ if page == "Evaluation of models":
 - 91.1% accuracy on masked images (95.9% on unmasked).  
 - particularly good interpretability on masked images. 
 """)
+    
+    # Checkbox to hide/show the DenseNet201 Classification Report
+    st.markdown("<br>", unsafe_allow_html=True) 
+    if st.checkbox("DenseNet201 Classification Report"):
+        st.write(df_densenet_classif_report)
+
     st.markdown("<br><br>", unsafe_allow_html=True) 
     st.markdown("""
-DenseNet201 is a complex model with 713 layers, often seen in the literature, either alone or in combination with other models, for medical imaging classification (Chowdhury et al., 2020 ; Bhosale et al. 2023).  
+:arrow_forward: DenseNet201 is a complex model with 713 layers, often seen in the literature, either alone or in combination with other models, for medical imaging classification (Chowdhury et al., 2020 ; Bhosale et al. 2023).  
 Compared to other CNNs, the dense layer architecture of Densenet201 is designed to improve accuracy with more parameters without performance degradation or overfitting, and benefit from feature reuse, compact representations, and reduced redundancy (Huang et al., 2017).
 """)
 
-
     # Checkbox to hide/show the Classification Report Metrics section
     st.markdown("<br><br>", unsafe_allow_html=True) 
-    if st.checkbox(":gift: Show Classification Report Metrics & Models' Similarity"):
+    if st.checkbox(":gift: Classification Report Metrics & Models' Similarity"):
         st.subheader("Classification Report Metrics", divider = 'gray')
         # similarity graph
         nb_neighbors = st.number_input("Number of Neighbors for KNN", min_value=1, max_value=10, value=3, step=1) # nb of neighbors for knn
