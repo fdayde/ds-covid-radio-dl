@@ -44,5 +44,5 @@ def add_footer():
         st.image(logo_path, use_column_width=True)
 
 
-# Use : At the end each scrit:
+# Use: at the end each script:
 # add_footer()
