@@ -6,9 +6,7 @@ import base64
 current_dir = os.path.dirname(os.path.abspath(__file__))
 logo_path = os.path.join(current_dir, "..", "pictures", "logo.PNG")
 in_bluelogo_path = os.path.join(current_dir, "..", "pictures", "profile_icons", "In-Blue-14@2x.png")
-in_whitelogo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "profile_icons", "In-White-14@2x.png")
 git_blacklogo_path = os.path.join(current_dir, "..", "pictures", "profile_icons", "github-mark.png")
-git_white_logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "profile_icons", "github-mark-white.png")
 
 in_blue_logo_base64 = base64.b64encode(open(in_bluelogo_path, "rb").read()).decode("utf-8")
 git_blacklogo_base64 = base64.b64encode(open(git_blacklogo_path, "rb").read()).decode("utf-8")
