@@ -109,6 +109,7 @@ cnn_concepts = [
 
 # Title and description
 st.title("Convolutional Neural Network")
+st.header("CNN Architecture", divider = 'rainbow')
 
 n_max = len(cnn_concepts)
 
