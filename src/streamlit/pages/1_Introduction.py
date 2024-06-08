@@ -38,6 +38,7 @@ hr {
 </style>
 """
 
+st.title("Introduction")
 st.sidebar.title("Introduction")
 pages = ["Context : COVID", "Context : Deep Learning", "Objective"]
 page = st.sidebar.radio("Summary", pages, label_visibility="collapsed")
@@ -105,11 +106,11 @@ As the infection progresses, lesions start to appear on the lungs :
 
 covid_markdown_diagnostic = """
 
-#### - **ELISA TESTS** : **Quick** (15 minutes) but **low specificity**
+- **ELISA TESTS** : **Quick** (15 minutes) but **low specificity**
 
-#### - **PCR** : **Long** (a day) with **average to high specificity**, not available everywhere
+- **PCR** : **Long** (a day) with **average to high specificity**, not available everywhere
 
-#### - **RADIOLOGY** : **Quick** (15 minutes), available in every healthcare facility
+- **RADIOLOGY** : **Quick** (15 minutes), available in every healthcare facility
 """
 
 
@@ -151,10 +152,10 @@ We decided that it would be best to develop a Deep Learning model capable of cla
 
 
 if page == "Context : COVID":
-    st.header("Introduction", divider = 'rainbow')
-    st.subheader("COVID-19 Overview", divider = 'grey')
-    st.markdown(covid_markdown_intro, unsafe_allow_html=True)
+    st.header("COVID-19 Overview", divider = 'rainbow')
 
+    st.markdown(covid_markdown_intro, unsafe_allow_html=True)
+    st.subheader("Lung Impact", divider = 'grey')
     ## Séparer l'image et le texte dans 2 colonnes différentes pour les afficher côtes-à-côtes
     col1, col2 = st.columns(2)
 
