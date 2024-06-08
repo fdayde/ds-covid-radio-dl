@@ -1,7 +1,7 @@
 import streamlit as st
 from pathlib import Path
 import os
-
+from functions.footer import add_footer
 
 
 st.set_page_config(
@@ -41,8 +41,6 @@ hr {
 # Chemin d'accès pour les images du Streamlit
 base_path = Path.cwd()
 images = base_path / 'pictures'
-banner_path = str(images / 'banner_streamlit.jpg')
-logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG")
 
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 
@@ -174,17 +172,5 @@ if page == "Discussion":
     st.subheader("To go further : What next", divider = 'grey')
     st.markdown(discussion_markdown_what_next)
 
-# Footer
-st.header(" ", divider = 'rainbow')
-hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
 
-with hcol1:
-    st.markdown("""Thomas Baret  
-                    Nicolas Bouzinbi  
-                     Florent Daydé  
-                     Nicolas Fenassile""")
-with hcol2:
-    st.markdown(" ")
-
-with hcol3:
-    st.image(logo_path, use_column_width=True)
+add_footer()

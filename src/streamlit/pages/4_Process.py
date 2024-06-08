@@ -1,6 +1,7 @@
-from functions.choosing_best_model import df_clasif_report, choose_best_model, create_accuracy_plot, plot_model_similarity_graph, knn_model_similarity
+from functions.choosing_best_model import df_clasif_report, df_densenet_classif_report, table_markdown, create_accuracy_plot, plot_model_similarity_graph, knn_model_similarity
 import streamlit as st
 import os
+from functions.footer import add_footer
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
@@ -21,7 +22,6 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
-logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG")
 diagram_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_process.SVG")
 overfitting_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Overfitting.png")
 training_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_plot.png")
@@ -490,18 +490,34 @@ Grad-CAM offers a simple yet powerful way to interpret CNN decisions, improving 
 if page == "Evaluation of models":
     st.header("Choosing the best model", divider = 'rainbow')
     st.subheader("Performances summary", divider = 'gray')
-    table_md, conclusion_md = choose_best_model()
+    table_md = table_markdown()
     st.markdown(table_md)
     st.markdown("<br>", unsafe_allow_html=True) 
-    st.markdown(conclusion_md)
     
     # Display the Plotly figure
     fig = create_accuracy_plot()
     st.plotly_chart(fig)
 
+    st.markdown("""
+:arrow_forward: The **DenseNet201** has the best trade-off between performance and interpretability:   
+- 91.1% accuracy on masked images (95.9% on unmasked).  
+- particularly good interpretability on masked images. 
+""")
+    
+    # Checkbox to hide/show the DenseNet201 Classification Report
+    st.markdown("<br>", unsafe_allow_html=True) 
+    if st.checkbox("DenseNet201 Classification Report"):
+        st.write(df_densenet_classif_report)
+
+    st.markdown("<br><br>", unsafe_allow_html=True) 
+    st.markdown("""
+:arrow_forward: DenseNet201 is a complex model with 713 layers, often seen in the literature, either alone or in combination with other models, for medical imaging classification (Chowdhury et al., 2020 ; Bhosale et al. 2023).  
+Compared to other CNNs, the dense layer architecture of Densenet201 is designed to improve accuracy with more parameters without performance degradation or overfitting, and benefit from feature reuse, compact representations, and reduced redundancy (Huang et al., 2017).
+""")
 
     # Checkbox to hide/show the Classification Report Metrics section
-    if st.checkbox(":gift: Show Classification Report Metrics & Models' Similarity"):
+    st.markdown("<br><br>", unsafe_allow_html=True) 
+    if st.checkbox(":gift: Classification Report Metrics & Models' Similarity"):
         st.subheader("Classification Report Metrics", divider = 'gray')
         # similarity graph
         nb_neighbors = st.number_input("Number of Neighbors for KNN", min_value=1, max_value=10, value=3, step=1) # nb of neighbors for knn
@@ -512,17 +528,4 @@ if page == "Evaluation of models":
 
 
 
-# Footer
-st.header(" ", divider = 'rainbow')
-hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
-
-with hcol1:
-    st.markdown("""Thomas Baret  
-                    Nicolas Bouzinbi  
-                     Florent Daydé  
-                     Nicolas Fenassile""")
-with hcol2:
-    st.markdown(" ")
-
-with hcol3:
-    st.image(logo_path, use_column_width=True)
+add_footer()

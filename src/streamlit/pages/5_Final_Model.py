@@ -8,13 +8,15 @@ from PIL import Image
 import numpy as np
 from io import BytesIO
 import cv2
+from functions.footer import add_footer
+
 
 # Configure TensorFlow to run in compatibility mode
 tf.disable_v2_behavior()
 tf.compat.v1.enable_eager_execution()
 
 # Configure the Streamlit page
-st.set_page_config(page_title="Image Prediction", page_icon=":rocket:")
+st.set_page_config(page_title="Image Prediction", page_icon=":rocket:", layout="wide")
 st.title("Final Model: DenseNet201")
 
 # Model selection
@@ -65,3 +67,6 @@ if uploaded_files and model:
                 st.error(f"An error occurred while processing the image {uploaded_file.name}: {str(e)}")
 elif not uploaded_files and model:
     st.info("Please upload image files for prediction.")
+
+
+add_footer()

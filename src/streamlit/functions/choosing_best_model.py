@@ -20,14 +20,6 @@ def table_markdown():
 """
     return table_md
 
-def model_choice():
-    ccl_md = """The **DenseNet201** has the best trade-off between performance and interpretability, especially on masked images."""
-    return ccl_md
-
-def choose_best_model():
-    return table_markdown(), model_choice()
-
-
 data_accuracy_global = {
     "model": ["VGG19", "VGG19", "MobileNetV2", "MobileNetV2", "DenseNet201", "DenseNet201", "Xception", "Xception"],
     "masked": [1, 0, 1, 0, 1, 0, 1, 0],
@@ -55,6 +47,8 @@ data_classification_report = {
 }
 
 df_clasif_report = pd.DataFrame(data_classification_report)
+
+df_densenet_classif_report = df_clasif_report.loc[df_clasif_report.model == "DenseNet201"]
 
 def create_accuracy_plot(data=df_accuracy_global):
     fig = go.Figure()
