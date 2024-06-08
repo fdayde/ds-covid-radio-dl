@@ -5,6 +5,7 @@ from PIL import Image
 import re
 import pandas as pd
 import plotly.graph_objects as go
+from functions.footer import add_footer
 
 
 st.set_page_config(
@@ -327,17 +328,5 @@ if page == "Objective":
     st.subheader("What We Wanted To Achieve", divider = 'grey')
     st.markdown(objective_markdown)
 
-# Footer
-st.header(" ", divider = 'rainbow')
-hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
 
-with hcol1:
-    st.markdown("""Thomas Baret  
-                    Nicolas Bouzinbi  
-                     Florent Daydé  
-                     Nicolas Fenassile""")
-with hcol2:
-    st.markdown(" ")
-
-with hcol3:
-    st.image(logo_path, use_column_width=True)
+add_footer()

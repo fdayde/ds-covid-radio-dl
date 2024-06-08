@@ -1,6 +1,8 @@
 import streamlit as st
 import os
 from streamlit_extras.app_logo import add_logo
+from functions.footer import add_footer
+
 
 st.set_page_config(
     page_title="Data Exploration",
@@ -143,17 +145,5 @@ if page == "Data Visualization":
                     This tends to show that COVID-infected lungs have clear light areas compared to healthy lungs and other infections.
                     """)
         
-# Footer
-st.header(" ", divider = 'rainbow')
-hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
 
-with hcol1:
-    st.markdown("""Thomas Baret  
-                    Nicolas Bouzinbi  
-                     Florent Daydé  
-                     Nicolas Fenassile""")
-with hcol2:
-    st.markdown(" ")
-
-with hcol3:
-    st.image(logo_path, use_column_width=True)
+add_footer()

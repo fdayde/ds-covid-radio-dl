@@ -15,16 +15,17 @@ git_blacklogo_base64 = base64.b64encode(open(git_blacklogo_path, "rb").read()).d
 
    
 def profile(name, linkedin_url=None, github_url=None):
-    name_col0, icon_col1, icon_col2 = st.columns([1, 0.2, 0.6])
-    if name:
-        with name_col0:
-            st.write(f"**{name}**")
+    icon_col1, icon_col2, name_col3 = st.columns([1, 1, 14])
+
     if linkedin_url:
         with icon_col1:
             st.markdown(f"<a href='{linkedin_url}' target='_blank'><img src='data:image/png;base64,{in_blue_logo_base64}' class='icon' width='16'></a>", unsafe_allow_html=True)
     if github_url:
         with icon_col2:
             st.markdown(f"<a href='{github_url}' target='_blank'><img src='data:image/png;base64,{git_blacklogo_base64}' class='icon' width='16'></a>", unsafe_allow_html=True)
+    if name:
+        with name_col3:
+            st.write(f"**{name}**")
 
 def add_footer():
     st.header(" ", divider='rainbow')

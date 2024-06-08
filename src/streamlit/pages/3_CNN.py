@@ -1,5 +1,7 @@
 import streamlit as st
 import os
+from functions.footer import add_footer
+
 
 st.set_page_config(page_title="CNN", layout="wide")
 
@@ -136,17 +138,4 @@ if st.sidebar.button('Prev'):
         st.session_state.index -= 1
 
 
-# Footer
-st.header(" ", divider = 'rainbow')
-hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
-
-with hcol1:
-    st.markdown("""Thomas Baret  
-                    Nicolas Bouzinbi  
-                     Florent Daydé  
-                     Nicolas Fenassile""")
-with hcol2:
-    st.markdown(" ")
-
-with hcol3:
-    st.image(logo_path, use_column_width=True)
+add_footer()
