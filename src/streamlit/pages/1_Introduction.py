@@ -5,6 +5,8 @@ from PIL import Image
 import re
 import pandas as pd
 import plotly.graph_objects as go
+from functions.footer import add_footer
+
 
 st.set_page_config(
     page_title="Introduction",
@@ -46,8 +48,6 @@ page = st.sidebar.radio("Summary", pages, label_visibility="collapsed")
 # Chemin d'accès pour les images du Streamlit
 base_path = Path.cwd()
 images = base_path / 'pictures'
-banner_path = str(images / 'banner_streamlit.jpg')
-logo_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "logo.PNG")
 
 # Définir le chemin vers le dossier contenant les images pour l'animation
 images_animation_lungs = images / 'COVID_lung_animation'
@@ -323,17 +323,5 @@ if page == "Objective":
     st.subheader("What We Wanted To Achieve", divider = 'grey')
     st.markdown(objective_markdown)
 
-# Footer
-st.header(" ", divider = 'rainbow')
-hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
 
-with hcol1:
-    st.markdown("""Thomas Baret  
-                    Nicolas Bouzinbi  
-                     Florent Daydé  
-                     Nicolas Fenassile""")
-with hcol2:
-    st.markdown(" ")
-
-with hcol3:
-    st.image(logo_path, use_column_width=True)
+add_footer()

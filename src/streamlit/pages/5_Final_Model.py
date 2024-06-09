@@ -8,19 +8,32 @@ from PIL import Image
 import numpy as np
 from io import BytesIO
 import cv2
+from functions.footer import add_footer
+
 
 # Configure TensorFlow to run in compatibility mode
 tf.disable_v2_behavior()
 tf.compat.v1.enable_eager_execution()
 
 # Configure the Streamlit page
-st.set_page_config(page_title="Image Prediction", page_icon=":rocket:")
+st.set_page_config(page_title="Image Prediction", page_icon=":rocket:", layout="wide")
 st.title("Final Model: DenseNet201")
+
+st.markdown("""
+        <style>
+               .block-container {
+                    padding-top: 3rem;
+                    padding-bottom: 3rem;
+                    padding-left: 10rem;
+                    padding-right: 10rem;
+                }
+        </style>
+        """, unsafe_allow_html=True)
 
 # Model selection
 option = st.selectbox(
     "Select the model to use:",
-    ("-", "DenseNet201", "VGG16"),
+    ("-", "DenseNet201"),
     index=0,
     help="Choose a model..."
 )
@@ -29,6 +42,7 @@ st.write('Selected model:', option)
 # Load the model if a valid option is chosen
 if option and option != "-":
     model = load_model(option)
+    st.markdown(f"The {option} model has been trained with masked images. **Please use masked images** to get the correct prediction.")
     if not model:
         st.error("Failed to load the selected model.")
 else:
@@ -53,15 +67,18 @@ if uploaded_files and model:
                 col1, col2 = st.columns(2)
                 
                 with col1:
-                    st.image(preprocessed_image, use_column_width=True, clamp=True, caption="Preprocessed Image")
+                    st.image(preprocessed_image, width=350, clamp=True, caption="Preprocessed Image")
                 
                 # Generate Grad-CAM
                 superimposed_img = generate_gradcam(model, preprocessed_image, 'conv5_block32_concat')
                 
                 with col2:
-                    st.image(superimposed_img, use_column_width=True, caption="Superimposed Grad-CAM Image")
+                    st.image(superimposed_img, width=350, caption="Superimposed Grad-CAM Image")
             
             except Exception as e:
                 st.error(f"An error occurred while processing the image {uploaded_file.name}: {str(e)}")
 elif not uploaded_files and model:
     st.info("Please upload image files for prediction.")
+
+
+add_footer()
