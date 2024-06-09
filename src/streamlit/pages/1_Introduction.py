@@ -182,7 +182,7 @@ if page == "Context : COVID":
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
-            if st.button("Précédente"):
+            if st.button("Previous"):
                 if st.session_state.img_index > 0:
                     st.session_state.img_index -= 1
 
@@ -190,7 +190,7 @@ if page == "Context : COVID":
             st.write("")
 
         with col3:
-            if st.button("Suivante"):
+            if st.button("Next"):
                 if st.session_state.img_index < len(image_files) - 1:
                     st.session_state.img_index += 1
     
