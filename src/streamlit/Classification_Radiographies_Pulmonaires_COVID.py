@@ -1,6 +1,8 @@
 import streamlit as st
 from pathlib import Path
 
+
+
 st.set_page_config(
     page_title="DS Project",
     page_icon=":sparkles:",
@@ -18,8 +20,11 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
+
+
 st.title("Data Science Project: COVID Lung X-Rays Classification")
 st.header(" ", divider = 'rainbow')
+
 
 base_path = Path.cwd()
 images = base_path / 'pictures'
