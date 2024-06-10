@@ -48,6 +48,9 @@ This practice is standard in machine learning and deep learning, providing a rob
 
 """
 
+path_images = os.path.join(os.path.dirname(__file__), "..", "pictures")
+
+
 if page == "Dataset Analysis":
     st.header("Dataset Analysis", divider = 'rainbow')
     
@@ -72,46 +75,46 @@ if page == "Dataset Analysis":
 
     with column3:
         st.markdown("Label: COVID")
-        image_path1 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "COVID-19", "images", "covid_200.png")
+        image_path1 = os.path.join(path_images, "data_exploration", "COVID-19", "images", "covid_200.png")
         st.image(image_path1, caption="image covid_200.png")
         st.markdown("Label: Non-COVID")
-        image_path2 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "Non-COVID", "images", "non_covid (170).png")
+        image_path2 = os.path.join(path_images, "data_exploration", "Non-COVID", "images", "non_covid (170).png")
         st.image(image_path2, caption="image non_covid (170).png")
         st.markdown("Label: Normal")
-        image_path3 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "Normal", "images", "Normal (3935).png")
+        image_path3 = os.path.join(path_images, "data_exploration", "Normal", "images", "Normal (3935).png")
         st.image(image_path3, caption="Normal (3935).png")
 
     with column4:
         st.markdown("""Mask associated""")
-        mask_path1 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "COVID-19", "lung masks", "covid_200.png")
+        mask_path1 = os.path.join(path_images, "data_exploration", "COVID-19", "lung masks", "covid_200.png")
         st.image(mask_path1, caption="mask covid_200.png")
         st.markdown("""Mask associated""")
-        mask_path2 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "Non-COVID", "lung masks", "non_covid (170).png")
+        mask_path2 = os.path.join(path_images, "data_exploration", "Non-COVID", "lung masks", "non_covid (170).png")
         st.image(mask_path2, caption="mask non_covid (170).png")
         st.markdown("""Mask associated""")
-        mask_path3 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "Normal", "lung masks", "Normal (3935).png")
+        mask_path3 = os.path.join(path_images, "data_exploration", "Normal", "lung masks", "Normal (3935).png")
         st.image(mask_path3, caption="Normal (3935).png")
 
     with column5:
         st.markdown("Label: COVID")
-        image_path4 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "COVID-19", "images", "covid_11.png")
+        image_path4 = os.path.join(path_images, "data_exploration", "COVID-19", "images", "covid_11.png")
         st.image(image_path4, caption="image covid_11.png")
         st.markdown("Label: Non-COVID")
-        image_path5 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "Non-COVID", "images", "non_covid (764).png")
+        image_path5 = os.path.join(path_images, "data_exploration", "Non-COVID", "images", "non_covid (764).png")
         st.image(image_path5, caption="image non_covid (764).png")
         st.markdown("Label: Normal")
-        image_path6 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "Normal", "images", "Normal (8398).png")
+        image_path6 = os.path.join(path_images, "data_exploration", "Normal", "images", "Normal (8398).png")
         st.image(image_path6, caption="Normal (8398).png")
 
     with column6:
         st.markdown("""Mask associated""")
-        mask_path4 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "COVID-19", "lung masks", "covid_11.png")
+        mask_path4 = os.path.join(path_images, "data_exploration", "COVID-19", "lung masks", "covid_11.png")
         st.image(mask_path4, caption="mask covid_11.png")
         st.markdown("""Mask associated""")
-        mask_path5 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "Non-COVID", "lung masks", "non_covid (764).png")
+        mask_path5 = os.path.join(path_images, "data_exploration", "Non-COVID", "lung masks", "non_covid (764).png")
         st.image(mask_path5, caption="mask non_covid (764).png")
         st.markdown("""Mask associated""")
-        mask_path6 = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "Lung Segmentation Data", "Normal", "lung masks", "Normal (8398).png")
+        mask_path6 = os.path.join(path_images, "data_exploration", "Normal", "lung masks", "Normal (8398).png")
         st.image(mask_path6, caption="Normal (8398).png")
 
 if page == "Data Visualization":
@@ -122,7 +125,7 @@ if page == "Data Visualization":
     with col1:
         # DataViz - Image Count
         st.subheader("Image count", divider = 'gray')
-        data_path1 = os.path.join(os.path.dirname(__file__), "..", "pictures", "data_repartition.PNG")
+        data_path1 = os.path.join(path_images, "data_repartition.PNG")
         st.image(data_path1, caption="Repartition of images in each label", use_column_width=True)
         st.markdown("""
                 As seen above, with this new dataset, we worked on more data, which usually leads to more accurate models. 
@@ -136,7 +139,7 @@ if page == "Data Visualization":
     with col3:
         # DataViz - Intensity Mean
         st.subheader("Mean intensity", divider = 'grey')
-        data_path2 = os.path.join(os.path.dirname(__file__), "..", "pictures", "mean_intensity.PNG")
+        data_path2 = os.path.join(path_images, "mean_intensity.PNG")
         st.image(data_path2, caption="Mean intensity of images and masks in each label", use_column_width=True)
         st.markdown("""
                     Masks have roughly the same intensity spread for each label, but we can see that COVID images are more intense in average.  
