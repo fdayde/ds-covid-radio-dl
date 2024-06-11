@@ -22,7 +22,7 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
-diagram_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_process.SVG")
+diagram_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_process.svg")
 overfitting_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Overfitting.png")
 training_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_plot.png")
 
@@ -58,7 +58,7 @@ if page == "Unfolding":
     with col2:
         st.markdown(" ")
     with col3:
-        data_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "unfolding.PNG")
+        data_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "unfolding.png")
         st.image(data_path, caption="https://deepnote.com/app/a_mas/Data-Preprocessing-Tools-4943e322-768c-4961-b30f-c0e8f63bf0ec", use_column_width=True)
 
 
