@@ -5,7 +5,6 @@ __pycache__/
 
 # C extensions
 *.so
-models
 # Distribution / packaging
 .Python
 build/
@@ -164,9 +163,6 @@ cython_debug/
 # Data folder
 data/raw/*
 data/processed/*
-
-# models folder
-models/*
 
 # weights for del model
 src/streamlit/models/model_densenet_masked.weights.h5
