@@ -1,7 +1,33 @@
-Data Science Project: COVID Lung X-Rays Classification
+COVID Lung X-Rays Classification with Deep Learning
+==============================
+This project is a fork of [MAR24_BDS_Radios_Pulmonaire](https://github.com/DataScientest-Studio/MAR24_BDS_Radios_Pulmonaire) which was developped during the Data Scientist course of [Datascientest](https://datascientest.com/) from March to June 2024.  
+
+The primary goal of this fork is to introduce new features and improvements to enhance functionality, the user interface and performance. 
+
+### Improvements
+- Added references for dataset, models and images.
+- Provided context of the project on the homepage.
+- Redesigned the footer.
+- Refactored the code.
+- Added some lung x-rays images for testing.
+- Introduced a lung segmentation model segmenation model.
+<br> 
+<br>
+
+View the updated **streamlit app** on [Hugging Face](https://huggingface.co/spaces/fdayde/streamlit-dl-radio) 🤗
+
+<br> 
+
+------------
+------------
+------------
+------------
+------------
+
+Original Project: Data Science Project: COVID Lung X-Rays Classification
 ==============================
 
-View the streamlit app on [Huggingface](https://huggingface.co/spaces/fdayde/streamlit-dl-radio) 🤗
+View the original streamlit app on [Hugging Face](https://huggingface.co/spaces/fdayde/streamlit-dl-radio) 🤗
 
 ------------
 This project was made during the Data Scientist course of [Datascientest](https://datascientest.com/), and uses the COVID-QU-Ex dataset available on Kaggle: https://www.kaggle.com/datasets/anasmohammedtahir/covidqu
@@ -23,54 +49,15 @@ Team:
 supervised by: Gaël Penessot
 
 ------------
-How to deploy the streamlit app on Huggingface: 
+How to deploy the streamlit app on Hugging Face: 
 
-- Create a new space on Huggingface and clone the repository
+- Create a new space on Hugging Face and clone the repository
 - Push the content of the `src/streamlit` directory
 - Add the model's weights file to the `models` folder
 - Store the model weights in Git LFS by adding the following line to the `.gitattributes` file:  
 ```*.h5 filter=lfs diff=lfs merge=lfs -text```
 - Push to Huggingface
-- Do not modify or delete the `REAMDE.md` file created by Huggingface during the initialization on the space.
+- Do not modify or delete the `REAMDE.md` file created by Hugging Face during the initialization on the space.
 
 ------------
-Project Organization
-------------
-
-    ├── LICENSE
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data               <- Should be in your computer but not on Github (only in .gitignore)
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's name, and a short `-` delimited description, e.g.
-    │                         `1.0-alban-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, links, and all other explanatory materials.
-    │
-    ├── reports            <- The reports that you'll make during this project as PDF
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   ├── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │   │   └── visualize.py
-
---------
-
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
