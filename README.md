@@ -1,6 +1,9 @@
 Data Science Project: COVID Lung X-Rays Classification
 ==============================
 
+View the streamlit app on [Huggingface](https://huggingface.co/spaces/fdayde/streamlit-dl-radio) 🤗
+
+------------
 This project was made during the Data Scientist course of [Datascientest](https://datascientest.com/), and uses the COVID-QU-Ex dataset available on Kaggle: https://www.kaggle.com/datasets/anasmohammedtahir/covidqu
 
 
