@@ -27,10 +27,10 @@ How to deploy the streamlit app on Huggingface:
 
 - Create a new space on Huggingface
 - Push the content of src/streamlit
-- the weights of the model in gitlfs, by adding the following line to the file ".gitattributes":  
+- Add the weights of the model in gitlfs, by adding the following line to the file ".gitattributes":  
 ```*.h5 filter=lfs diff=lfs merge=lfs -text```
 
-- do not modify or delete the REAMDE.md file created by Huggingface at the initialization on the space.
+- Do not modify or delete the REAMDE.md file created by Huggingface at the initialization on the space.
 
 ------------
 Project Organization
