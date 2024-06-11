@@ -10,7 +10,7 @@ import os
 
 # weights path
 current_dir = os.path.dirname(__file__)
-densenet_weights_path = os.path.join(current_dir, '..', '..', '..', 'models', 'model_densenet_masked.weights.h5')
+densenet_weights_path = os.path.join(current_dir, '..', 'models', 'model_densenet_masked.weights.h5')
 
 def build_model_tuned_densenet201():
     base_model = DenseNet201(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
