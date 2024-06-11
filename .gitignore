@@ -169,4 +169,4 @@ data/processed/*
 models/*
 
 # weights for del model
-src/models/model_densenet_masked.weights.h5
+src/streamlit/models/model_densenet_masked.weights.h5
