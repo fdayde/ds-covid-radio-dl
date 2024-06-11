@@ -167,3 +167,6 @@ data/processed/*
 
 # models folder
 models/*
+
+# weights for del model
+src/streamlit/models/model_densenet_masked.weights.h5
