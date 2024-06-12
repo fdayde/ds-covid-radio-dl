@@ -100,7 +100,7 @@ Histogram Normalization, also known as Histogram Equalization, adjusts the contr
 - Useful for images with backgrounds and foregrounds that are both bright or both dark.''')
 
     st.subheader("Contrast Limited Adaptive Histogram Equalization (CLAHE)", divider = 'gray')
-    st.markdown(''')
+    st.markdown('''
 CLAHE is a variant of histogram equalization that operates on small regions in the image called tiles. It limits the amplification of noise by clipping the histogram at a predefined value (clip limit). The contrast in each tile is enhanced, and then the tiles are combined using bilinear interpolation.
 
 **Procedure:**
