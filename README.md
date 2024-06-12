@@ -55,55 +55,5 @@ supervised by: Gaël Penessot
 
 View the original streamlit app on [Hugging Face](https://huggingface.co/spaces/fdayde/streamlit-dl-radio) 🤗
 
-- Create a new space on Huggingface and clone the repository
-- Push the content of the `src/streamlit` directory
-- Add the model's weights file to the `models` folder
-- Store the model weights in Git LFS by adding the following line to the `.gitattributes` file:  
-```*.h5 filter=lfs diff=lfs merge=lfs -text```
-- Push to Huggingface
-- Do not modify or delete the `REAMDE.md` file created by Huggingface during the initialization on the space.
-
-------------
-Project Organization
-------------
-
-    ├── LICENSE
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data               <- Should be in your computer but not on Github (only in .gitignore)
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── demo               <- Samples from the dataset for demonstration in streamlit
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries, not on Github for size reasons
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's name, and a short `-` delimited description, e.g.
-    │                         `1.0-alban-data-exploration`.
-    │
-    │
-    ├── reports            <- The final report made during this project (PDF)
-    │
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │   
-    │   │── streamlit      <- Scripts for the Streamlit app
-    │   │
-    │   ├── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │   │   └── visualize.py
-
---------
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
