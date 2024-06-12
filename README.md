@@ -42,16 +42,17 @@ Project Organization
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
+    ├── demo               <- Samples from the dataset for demonstration in streamlit
+    │
+    ├── models             <- Trained and serialized models, model predictions, or model summaries, not on Github for size reasons
     │
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
     │                         the creator's name, and a short `-` delimited description, e.g.
     │                         `1.0-alban-data-exploration`.
     │
-    ├── references         <- Data dictionaries, manuals, links, and all other explanatory materials.
     │
-    ├── reports            <- The reports that you'll make during this project as PDF
-    │   └── figures        <- Generated graphics and figures to be used in reporting
+    ├── reports            <- The final report made during this project (PDF)
+    │
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
@@ -66,6 +67,8 @@ Project Organization
     │   │   │                 predictions
     │   │   ├── predict_model.py
     │   │   └── train_model.py
+    │   │   
+    │   │── streamlit      <- Scripts for the Streamlit app
     │   │
     │   ├── visualization  <- Scripts to create exploratory and results oriented visualizations
     │   │   └── visualize.py
