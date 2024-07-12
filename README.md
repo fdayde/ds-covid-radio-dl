@@ -11,7 +11,7 @@ The primary goal of this fork is to introduce new features and improvements to e
 - Redesigned the footer.
 - Refactored the code.
 - Added some lung x-rays images for testing.
-- Introduced a lung segmentation model segmenation model.
+- Introduced a lung segmentation model.
 
 ------------
 View the updated **streamlit app** on [Hugging Face](https://huggingface.co/spaces/fdayde/streamlit-dl-radio) 🤗
