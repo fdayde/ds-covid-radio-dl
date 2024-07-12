@@ -8,13 +8,10 @@ import plotly.graph_objects as go
 from functions.footer import add_footer
 
 
-st.set_page_config(
-    page_title="Introduction",
-    page_icon=":sparkles:",
-    layout="wide"
-)
+st.set_page_config(page_title="Introduction", page_icon=":sparkles:", layout="wide")
 
-st.markdown("""
+st.markdown(
+    """
         <style>
                .block-container {
                     padding-top: 3rem;
@@ -23,9 +20,11 @@ st.markdown("""
                     padding-right: 10rem;
                 }
         </style>
-        """, unsafe_allow_html=True)
+        """,
+    unsafe_allow_html=True,
+)
 
-# Define styles for your lines and text
+
 style = """
 <style>
 .title {
@@ -41,24 +40,31 @@ hr {
 
 st.title("Introduction")
 st.sidebar.title("Introduction")
-pages = ["Context : COVID", "Context : Deep Learning", "Objective"]
+pages = ["Context: COVID", "Context: Deep Learning", "Objective"]
 page = st.sidebar.radio("Summary", pages, label_visibility="collapsed")
 
 
-# Chemin d'accès pour les images du Streamlit
-base_path = Path.cwd()
-images = base_path / 'pictures'
+pictures_path = os.path.join(os.path.dirname(__file__), "..", "pictures")
+
 
 # Définir le chemin vers le dossier contenant les images pour l'animation
-images_animation_lungs = images / 'COVID_lung_animation'
+images_animation_lungs = os.path.join(pictures_path, "COVID_lung_animation")
+
 
 # Fonction pour extraire les numéros des noms de fichiers
 def extract_number(filename):
-    match = re.search(r'\d+', filename)
+    match = re.search(r"\d+", filename)
     return int(match.group()) if match else 0
 
+
 # Lister toutes les images dans le dossier
-image_files = sorted([os.path.join(images_animation_lungs, file) for file in os.listdir(images_animation_lungs)], key = lambda x: extract_number(os.path.basename(x)))
+image_files = sorted(
+    [
+        os.path.join(images_animation_lungs, file)
+        for file in os.listdir(images_animation_lungs)
+    ],
+    key=lambda x: extract_number(os.path.basename(x)),
+)
 
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 
@@ -79,7 +85,7 @@ the patient.
 """
 
 
-covid_markdown_health="""
+covid_markdown_health = """
 
 ### Inflammation 
 
@@ -95,7 +101,7 @@ covid_markdown_health="""
 
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 
-covid_markdown_lungs="""
+covid_markdown_lungs = """
 As the infection progresses, lesions start to appear on the lungs :
 """
 
@@ -111,8 +117,6 @@ covid_markdown_diagnostic = """
 
 - **RADIOLOGY** : **Quick** (15 minutes), available in every healthcare facility
 """
-
-
 
 
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
@@ -132,7 +136,7 @@ Popular Deep Learning Models :
 Deep learning has revolutionized fields such as computer vision, natural language processing, and speech recognition, enabling significant advancements in technology and research.
 """
 
-deep_learning_use="""
+deep_learning_use = """
 #### Nowadays, deep learning is commonly used in all sorts of advanced tasks, such as **face recognition**, **cancer diagnostic**, **LLM (ChatGPT)**,... and it seems its potential is almost limitless.
 """
 
@@ -150,20 +154,24 @@ We decided that it would be best to develop a Deep Learning model capable of cla
 ##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 
 
-if page == "Context : COVID":
-    st.header("COVID-19 Overview", divider = 'rainbow')
+if page == "Context: COVID":
+    st.header("COVID-19 Overview", divider="rainbow")
 
     st.markdown(covid_markdown_intro, unsafe_allow_html=True)
-    st.subheader("Lung Impact", divider = 'grey')
+    st.subheader("Lung Impact", divider="grey")
     ## Séparer l'image et le texte dans 2 colonnes différentes pour les afficher côtes-à-côtes
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("", divider = 'grey')
-        st.image(str(images / 'COVID19_lung_impact.jpg'), caption = 'COVID19 action on lungs, drawn by Brooke Ring', use_column_width=True)
+        st.subheader("", divider="grey")
+        st.image(
+            str(os.path.join(pictures_path, "COVID19_lung_impact.jpg")),
+            caption="COVID19 action on lungs, drawn by Brooke Ring",
+            use_column_width=True,
+        )
 
     with col2:
-        st.subheader("", divider = 'grey')
+        st.subheader("", divider="grey")
         ## Animation de l'évolution d'un poumon de patient COVID dans le temps
 
         # Fonction pour charger une image
@@ -171,12 +179,19 @@ if page == "Context : COVID":
             return Image.open(image_path)
 
         # Initialiser l'index de l'image dans la session de Streamlit
-        if 'img_index' not in st.session_state:
+        if "img_index" not in st.session_state:
             st.session_state.img_index = 0
 
         # Afficher l'image actuelle
-        current_image = load_image(os.path.join(images_animation_lungs, image_files[st.session_state.img_index]))
-        st.image(current_image, caption=f"Image {st.session_state.img_index + 1} sur {len(image_files)}")
+        current_image = load_image(
+            os.path.join(
+                images_animation_lungs, image_files[st.session_state.img_index]
+            )
+        )
+        st.image(
+            current_image,
+            caption=f"Image {st.session_state.img_index + 1} sur {len(image_files)}",
+        )
 
         # Boutons de navigation
         col1, col2, col3 = st.columns([1, 1, 1])
@@ -193,23 +208,23 @@ if page == "Context : COVID":
             if st.button("Next"):
                 if st.session_state.img_index < len(image_files) - 1:
                     st.session_state.img_index += 1
-    
-        st.write("Lungs X-Rays of a COVID-19 patient : Evolution, Rousan L.A. et a., 2020")
+
+        st.write(
+            "Lungs X-Rays of a COVID-19 patient : Evolution, Rousan L.A. et a., 2020"
+        )
 
         st.markdown(covid_markdown_lungs)
 
-    st.subheader("COVID-19 Diagnostic", divider = 'grey')
+    st.subheader("COVID-19 Diagnostic", divider="grey")
 
     st.markdown(covid_markdown_diagnostic)
 
-if page == "Context : Deep Learning":
-    st.header("Introduction", divider = 'rainbow')
+if page == "Context: Deep Learning":
+    st.header("Introduction", divider="rainbow")
 
     # Data for the timeline
     data = {
-        "Year": [
-            1950, 1957, 1974, 1986, 1989, 1990, 1997, 2006, 2012, 2014, 2016
-        ],
+        "Year": [1950, 1957, 1974, 1986, 1989, 1990, 1997, 2006, 2012, 2014, 2016],
         "Event": [
             "Alan Turing proposes the Turing Test",
             "Frank Rosenblatt introduces the Perceptron",
@@ -221,7 +236,7 @@ if page == "Context : Deep Learning":
             "Geoffrey Hinton introduces Deep Belief Networks",
             "AlexNet wins ImageNet competition",
             "GANs introduced by Ian Goodfellow",
-            "AlphaGo defeats world champion Go player"
+            "AlphaGo defeats world champion Go player",
         ],
         "Description": [
             "A test to determine a machine's ability to exhibit intelligent behavior indistinguishable from a human.",
@@ -234,93 +249,96 @@ if page == "Context : Deep Learning":
             "Deep Belief Networks are a type of deep neural network capable of unsupervised learning.",
             "AlexNet demonstrated the superiority of deep learning for image recognition tasks.",
             "Generative Adversarial Networks (GANs) opened new possibilities for generative models.",
-            "AlphaGo showcased the potential of deep reinforcement learning by defeating the world champion Go player."
-        ]
+            "AlphaGo showcased the potential of deep reinforcement learning by defeating the world champion Go player.",
+        ],
     }
 
     # Create DataFrame
     df = pd.DataFrame(data)
-    df['Year'] = df['Year'].astype(int)
+    df["Year"] = df["Year"].astype(int)
     df.set_index("Year", inplace=True)
 
     # Define different lengths for the vertical lines to prevent overlap
     lengths = [1.5, 1, 1.7, 1.2, 1.8, 1.3, 2, 1.5, 1.6, 1.4, 1.9]
 
-    st.subheader("Timeline of Advancements in Machine Learning", divider = 'grey')
+    st.subheader("Timeline of Advancements in Machine Learning", divider="grey")
 
     # Create the timeline figure
     fig = go.Figure()
 
     # Add the horizontal line
-    fig.add_trace(go.Scatter(
-        x=[1940, df.index.max()],
-        y=[0, 0],
-        mode='lines',
-        line=dict(color='red', width=4),
-        showlegend=False
-    ))
+    fig.add_trace(
+        go.Scatter(
+            x=[1940, df.index.max()],
+            y=[0, 0],
+            mode="lines",
+            line=dict(color="red", width=4),
+            showlegend=False,
+        )
+    )
 
     # Add events to the timeline with alternating positions and lengths
     for i, (year, row) in enumerate(df.iterrows()):
         y_position = lengths[i] if i % 2 == 0 else -lengths[i]
         # Draw vertical lines to the event points
-        fig.add_trace(go.Scatter(
-            x=[year, year],
-            y=[0, y_position],
-            mode='lines',
-            line=dict(color='red', width=1),
-            showlegend=False
-        ))
+        fig.add_trace(
+            go.Scatter(
+                x=[year, year],
+                y=[0, y_position],
+                mode="lines",
+                line=dict(color="red", width=1),
+                showlegend=False,
+            )
+        )
         # Add markers and event texts
-        fig.add_trace(go.Scatter(
-            x=[year],
-            y=[y_position],
-            mode='markers+text',
-            text=[row["Event"]],
-            textposition="top center" if y_position > 0 else "bottom center",
-            marker=dict(size=10, color='red'),
-            hoverinfo='text',
-            name=row["Event"]
-        ))
+        fig.add_trace(
+            go.Scatter(
+                x=[year],
+                y=[y_position],
+                mode="markers+text",
+                text=[row["Event"]],
+                textposition="top center" if y_position > 0 else "bottom center",
+                marker=dict(size=10, color="red"),
+                hoverinfo="text",
+                name=row["Event"],
+            )
+        )
 
     # Customize the layout
     fig.update_layout(
         title="",
         xaxis_title="Year",
         yaxis=dict(
-            showticklabels=False,
-            showgrid=False,
-            zeroline=False,
-            range=[-2.5, 2.5]
+            showticklabels=False, showgrid=False, zeroline=False, range=[-2.5, 2.5]
         ),
         xaxis=dict(
-            tickmode='linear',
+            tickmode="linear",
             tick0=1940,
             dtick=10,
         ),
         showlegend=False,
         height=800,
-        margin=dict(l=20, r=20, t=40, b=20)
+        margin=dict(l=20, r=20, t=40, b=20),
     )
 
     # Display the plot
     st.plotly_chart(fig)
 
     # Display the data with corrected date format and set as index
-    st.subheader("Key Milestones in Machine Learning and Deep Learning", divider = 'grey')
+    st.subheader("Key Milestones in Machine Learning and Deep Learning", divider="grey")
     st.dataframe(df, use_container_width=True)
 
     for _ in range(2):
-                st.write("")
+        st.write("")
 
-    st.subheader("", divider = 'grey')
+    st.subheader("", divider="grey")
 
     st.markdown(deep_learning_use)
 
 
 if page == "Objective":
-    st.header("Introduction", divider = 'rainbow')
-    st.subheader("What We Wanted To Achieve", divider = 'grey')
+    st.header("Introduction", divider="rainbow")
+    st.subheader("What We Wanted To Achieve", divider="grey")
     st.markdown(objective_markdown)
 
 
