@@ -26,14 +26,6 @@ architecture_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures"
 convolution_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "convolution.gif")
 pooling_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "pooling.gif")
 
-# image sources :
-# https://medium.com/@raycad.seedotech/convolutional-neural-network-cnn-8d1908c010ab
-# https://www.quora.com/What-is-the-ReLU-layer-in-CNN
-# https://pub.mdpi-res.com/electronics/electronics-09-02152/article_deploy/html/images/electronics-09-02152-g013.png?1608039755
-# https://av-eks-lekhak.s3.amazonaws.com/media/__sized__/article_images/fully_connected_layer-thumbnail_webp-600x300.webp
-# https://www.mathworks.com/videos/introduction-to-deep-learning-what-are-convolutional-neural-networks--1489512765771.html
-# https://mlnotebook.github.io/post/CNN1/
-# https://towardsdatascience.com/an-introduction-to-convolutional-neural-networks-bdf692352c7
 
 # CNN steps text :
 home_text = "CNN Steps"
@@ -96,7 +88,17 @@ cnn_concepts = [
     architecture_img_path
 ]
 
-
+cnn_img_sources = [
+    "https://medium.com/@raycad.seedotech/convolutional-neural-network-cnn-8d1908c010ab",
+    "https://www.quora.com/What-is-the-ReLU-layer-in-CNN",
+    "https://pub.mdpi-res.com/electronics/electronics-09-02152/article_deploy/html/images/electronics-09-02152-g013.png?1608039755",
+    "https://av-eks-lekhak.s3.amazonaws.com/media/__sized__/article_images/fully_connected_layer-thumbnail_webp-600x300.webp",
+    "https://www.mathworks.com/videos/introduction-to-deep-learning-what-are-convolutional-neural-networks--1489512765771.html",
+    "https://mlnotebook.github.io/post/CNN1/",
+    "https://towardsdatascience.com/an-introduction-to-convolutional-neural-networks-bdf692352c7",
+    "https://towardsdatascience.com/an-introduction-to-convolutional-neural-networks-bdf692352c7",
+    "https://medium.com/@raycad.seedotech/convolutional-neural-network-cnn-8d1908c010ab"
+]
 
 # Title and description
 st.title("Convolutional Neural Network")
@@ -114,7 +116,7 @@ col1, col2 = st.columns(2)
 col1.markdown(texts[st.session_state['index']])
 
 # Display the image in the second column
-col2.image(cnn_concepts[st.session_state['index']])
+col2.image(cnn_concepts[st.session_state['index']], caption = cnn_img_sources[st.session_state['index']], use_column_width=True)
 
 # Add next and prev buttons to the sidebar
 if st.sidebar.button('Next'):
