@@ -14,7 +14,7 @@ The primary goal of this fork is to introduce new features and improvements to e
 - [ ] Introduced a lung segmentation model.
 - [ ] Deep code refactoring?
 ------------
-View the updated **streamlit app** on [Hugging Face](https://huggingface.co/spaces/fdayde/streamlit-dl-radio) 🤗
+View the updated **streamlit app** on [Hugging Face](https://huggingface.co/spaces/fdayde/Streamlit-Dl-Radio-fd) 🤗
 
 ------------
 ### How to deploy the streamlit app on Hugging Face: 

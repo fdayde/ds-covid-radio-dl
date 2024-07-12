@@ -27,7 +27,7 @@ def profile(name, linkedin_url=None, github_url=None):
 
 def add_main_footer():
     st.header(" ", divider='rainbow')
-    hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
+    hcol1, hcol2, hcol3 = st.columns([0.5, 0.5, 0.3])
 
     with hcol1:
         profile(name="Thomas Baret", linkedin_url="https://linkedin.com/in/thomas-baret-080050107", github_url="https://github.com/tom-b974")
