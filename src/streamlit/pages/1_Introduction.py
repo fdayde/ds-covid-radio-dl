@@ -45,82 +45,45 @@ page = st.sidebar.radio("Summary", pages, label_visibility="collapsed")
 
 
 pictures_path = os.path.join(os.path.dirname(__file__), "..", "pictures")
-
-
-# Définir le chemin vers le dossier contenant les images pour l'animation
 images_animation_lungs = os.path.join(pictures_path, "COVID_lung_animation")
 
 
-# Fonction pour extraire les numéros des noms de fichiers
-def extract_number(filename):
+def extract_number_from_filename(filename):
     match = re.search(r"\d+", filename)
     return int(match.group()) if match else 0
 
 
-# Lister toutes les images dans le dossier
 image_files = sorted(
     [
         os.path.join(images_animation_lungs, file)
         for file in os.listdir(images_animation_lungs)
     ],
-    key=lambda x: extract_number(os.path.basename(x)),
+    key=lambda x: extract_number_from_filename(os.path.basename(x)),
 )
 
-##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 
 covid_markdown_intro = """
-
 <div style='text-align: justify;'>
-COVID-19, caused by SARS-CoV-2, emerged in late 2019 and quickly became a 
-global pandemic. It spreads through respiratory droplets and causes symptoms 
-ranging from mild (fever, cough, fatigue) to severe (difficulty breathing, ARDS). 
-It mainly affects the lungs and severe cases, especially in older adults and 
-those with underlying conditions, can lead to death. It posed a significant
-healthcare problem, with a quick spread and a saturation of healtcare facilities.
+COVID-19, caused by SARS-CoV-2, emerged in late 2019 and quickly became a global pandemic. 
+It spreads through respiratory droplets and causes symptoms ranging from mild (fever, cough, fatigue) to severe (difficulty breathing, ARDS). 
+It mainly affects the lungs and severe cases, especially in older adults and those with underlying conditions, can lead to death. 
+It posed a significant healthcare problem, with a quick spread and a saturation of healtcare facilities.
 
-**One of the most important issue was a rapid diagnostic of the condition**, as it
-was not only a way to reduce the spread (isolation) and to better take care of
-the patient.
+**One of the most important issue was a rapid diagnostic of the condition**, as it was not only a way to reduce the spread (isolation) and to better take care of the patient.
 </div>
 """
 
-
-covid_markdown_health = """
-
-### Inflammation 
-
-
-### Pneumonia
-
-
-### Lung Damage
-
-
-### Long Recovery
-"""
-
-##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
-
 covid_markdown_lungs = """
-As the infection progresses, lesions start to appear on the lungs :
+As the infection progresses, lesions start to appear on the lungs:
 """
-
-
-##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
-
 
 covid_markdown_diagnostic = """
+- **ELISA TESTS**: **Quick** (15 minutes) but **low specificity**
 
-- **ELISA TESTS** : **Quick** (15 minutes) but **low specificity**
+- **PCR**: **Long** (a day) with **average to high specificity**, not available everywhere
 
-- **PCR** : **Long** (a day) with **average to high specificity**, not available everywhere
-
-- **RADIOLOGY** : **Quick** (15 minutes), available in every healthcare facility
+- **RADIOLOGY**: **Quick** (15 minutes), available in every healthcare facility
 """
-
-
-##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
-
 
 deep_learning_markdown = """
 #### Introduction to Deep Learning Models
@@ -137,21 +100,15 @@ Deep learning has revolutionized fields such as computer vision, natural languag
 """
 
 deep_learning_use = """
-#### Nowadays, deep learning is commonly used in all sorts of advanced tasks, such as **face recognition**, **cancer diagnostic**, **LLM (ChatGPT)**,... and it seems its potential is almost limitless.
+#### Nowadays, deep learning is commonly used in all sorts of advanced tasks, such as **face recognition**, **cancer diagnostic**, **LLM (ChatGPT)**... and its potential seems almost limitless.
 """
 
-##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
-
 objective_markdown = """
-
 In a healthcare facility setting, when a patient presents with signs of a lung infection whether it is a suspected COVID infection or not, it is crucial for the clinician to
 differentiate between COVID and other lung afflictions.
 
 We decided that it would be best to develop a Deep Learning model capable of classifying between a COVID infection, other types of pneumonias, or even a healthy lung.
-
 """
-
-##-------------------------------------------------------------------------------------------------------------------------------------------------------------------------##
 
 
 if page == "Context: COVID":
@@ -159,7 +116,7 @@ if page == "Context: COVID":
 
     st.markdown(covid_markdown_intro, unsafe_allow_html=True)
     st.subheader("Lung Impact", divider="grey")
-    ## Séparer l'image et le texte dans 2 colonnes différentes pour les afficher côtes-à-côtes
+
     col1, col2 = st.columns(2)
 
     with col1:
@@ -174,7 +131,6 @@ if page == "Context: COVID":
         st.subheader("", divider="grey")
         ## Animation de l'évolution d'un poumon de patient COVID dans le temps
 
-        # Fonction pour charger une image
         def load_image(image_path):
             return Image.open(image_path)
 
@@ -193,7 +149,6 @@ if page == "Context: COVID":
             caption=f"Image {st.session_state.img_index + 1} sur {len(image_files)}",
         )
 
-        # Boutons de navigation
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:
@@ -210,7 +165,7 @@ if page == "Context: COVID":
                     st.session_state.img_index += 1
 
         st.write(
-            "Lungs X-Rays of a COVID-19 patient : Evolution, Rousan L.A. et a., 2020"
+            "Lungs X-Rays of a COVID-19 patient: Evolution. Rousan L.A. et al., 2020"
         )
 
         st.markdown(covid_markdown_lungs)
@@ -222,8 +177,7 @@ if page == "Context: COVID":
 if page == "Context: Deep Learning":
     st.header("Introduction", divider="rainbow")
 
-    # Data for the timeline
-    data = {
+    timeline_data = {
         "Year": [1950, 1957, 1974, 1986, 1989, 1990, 1997, 2006, 2012, 2014, 2016],
         "Event": [
             "Alan Turing proposes the Turing Test",
@@ -253,10 +207,9 @@ if page == "Context: Deep Learning":
         ],
     }
 
-    # Create DataFrame
-    df = pd.DataFrame(data)
-    df["Year"] = df["Year"].astype(int)
-    df.set_index("Year", inplace=True)
+    timeline_df = pd.DataFrame(timeline_data)
+    timeline_df["Year"] = timeline_df["Year"].astype(int)
+    timeline_df.set_index("Year", inplace=True)
 
     # Define different lengths for the vertical lines to prevent overlap
     lengths = [1.5, 1, 1.7, 1.2, 1.8, 1.3, 2, 1.5, 1.6, 1.4, 1.9]
@@ -269,7 +222,7 @@ if page == "Context: Deep Learning":
     # Add the horizontal line
     fig.add_trace(
         go.Scatter(
-            x=[1940, df.index.max()],
+            x=[1940, timeline_df.index.max()],
             y=[0, 0],
             mode="lines",
             line=dict(color="red", width=4),
@@ -278,7 +231,7 @@ if page == "Context: Deep Learning":
     )
 
     # Add events to the timeline with alternating positions and lengths
-    for i, (year, row) in enumerate(df.iterrows()):
+    for i, (year, row) in enumerate(timeline_df.iterrows()):
         y_position = lengths[i] if i % 2 == 0 else -lengths[i]
         # Draw vertical lines to the event points
         fig.add_trace(
@@ -326,7 +279,7 @@ if page == "Context: Deep Learning":
 
     # Display the data with corrected date format and set as index
     st.subheader("Key Milestones in Machine Learning and Deep Learning", divider="grey")
-    st.dataframe(df, use_container_width=True)
+    st.dataframe(timeline_df, use_container_width=True)
 
     for _ in range(2):
         st.write("")
