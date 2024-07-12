@@ -10,7 +10,7 @@ The primary goal of this fork is to introduce new features and improvements to e
 - [x] Provided context of the project on the homepage.
 - [ ] Redesigned the footer.
 - [x] Light code refactoring.
-- [ ] Added some lung x-rays images for testing.
+- [x] Added some lung x-rays images for demo.
 - [ ] Introduced a lung segmentation model.
 - [ ] Deep code refactoring?
 ------------
