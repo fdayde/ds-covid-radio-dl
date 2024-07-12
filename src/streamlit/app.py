@@ -1,6 +1,6 @@
 import streamlit as st
 from pathlib import Path
-from functions.footer import add_footer
+from functions.footer import add_main_footer
 
 
 
@@ -24,7 +24,7 @@ st.markdown("""
 
 
 
-st.title("Data Science Project: COVID Lung X-Rays Classification")
+st.title("COVID Lung X-Ray Classification Using a Deep Learning Model")
 st.header(" ", divider = 'rainbow')
 
 
@@ -35,4 +35,17 @@ banner_path = str(images / 'banner_streamlit.jpg')
 st.image(banner_path, use_column_width=True)
 
 
-add_footer()
+context_md = """
+This project was completed during the Data Scientist Bootcamp at [Datascientest](https://datascientest.com/) from March to June 2024.  
+
+Using the [COVID-QU-Ex Dataset](https://www.kaggle.com/datasets/anasmohammedtahir/covidqu) from Kaggle, the goal was to build a deep learning model to classify chest X-ray into 3 categories: COVID_19, Non-COVID infections or Normal.  
+
+This version has been forked from the original project: 
+- [original](https://github.com/DataScientest-Studio/MAR24_BDS_Radios_Pulmonaire)
+- [forked version](https://github.com/fdayde/ds-covid-radio-dl)
+
+"""
+
+st.markdown(context_md)
+
+add_main_footer()

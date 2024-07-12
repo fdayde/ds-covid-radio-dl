@@ -1,13 +1,9 @@
 # File path: streamlit_app.py
 
 import streamlit as st
-from functions.model import build_model_tuned_densenet201, prediction, load_model
+from functions.model import prediction, load_model
 from functions.preprocessing import preprocess_raw_image, generate_gradcam
 import tensorflow.compat.v1 as tf # type: ignore
-from PIL import Image
-import numpy as np
-from io import BytesIO
-import cv2
 from functions.footer import add_footer
 
 
