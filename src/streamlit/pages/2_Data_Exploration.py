@@ -1,6 +1,5 @@
 import streamlit as st
 import os
-from streamlit_extras.app_logo import add_logo
 from functions.footer import add_footer
 
 
@@ -30,8 +29,7 @@ data_markdown = """
 We worked on the COVID-QU-Ex Dataset available on [Kaggle](https://www.kaggle.com/datasets/cf77495622971312010dd5934ee91f07ccbcfdea8e2f7778977ea8485c1914df).
 
 This data set is a more complete version of the initially proposed dataset.  
-The researchers of Qatar University have created a new dataset containing the previous data,
-to which they added new images.  
+The researchers of Qatar University have created a new dataset containing the previous data, to which they added new images.  
 They compiled all the data in the "COVID-QU-Ex dataset", which consists of 33,920 chest X-ray (CXR) images including:
 
 - 11,956 COVID-19
@@ -44,8 +42,6 @@ We'll keep this separation when using the ImageGenerator as this approach allows
  - Validate the model with the Validation set: Use the validation data to tune hyperparameters and make adjustments, ensuring the model performs well on unseen data.
  - Evaluate the model with the Test set: Conduct the final assessment of the model's performance to ensure an unbiased evaluation.
 This practice is standard in machine learning and deep learning, providing a robust framework for model development and assessment.
-
-
 """
 
 path_images = os.path.join(os.path.dirname(__file__), "..", "pictures")
@@ -128,8 +124,8 @@ if page == "Data Visualization":
         data_path1 = os.path.join(path_images, "data_repartition.PNG")
         st.image(data_path1, caption="Repartition of images in each label", use_column_width=True)
         st.markdown("""
-                As seen above, with this new dataset, we worked on more data, which usually leads to more accurate models. 
-                In our case, we also have access to balanced data, which simplifies the preprocessing and reduce bias in models.  
+                As seen above, with this new dataset, we worked on more data, which usually leads to more accurate models.  
+                In our case, we also have access to balanced data, which simplifies the preprocessing and reduce bias in models.   
                 We now have 35% of the dataset pertaining to the COVID label, while the original dataset contained only 17% of COVID labels.
 
                 """)
