@@ -28,7 +28,7 @@ st.title("References & Sources")
 
 
 references_md = """
-DenseNet201 Model: Gao Huang and Zhuang Liu and Laurens van der Maaten and Kilian Q. Weinberger, 2018. Densely Connected Convolutional Networks.DenseNet201 Model: Gao Huang and Zhuang Liu and Laurens van der Maaten and Kilian Q. Weinberger, 2018. Densely Connected Convolutional Networks
+DenseNet201 Model: Gao Huang and Zhuang Liu and Laurens van der Maaten and Kilian Q. Weinberger, 2018. Densely Connected Convolutional Networks.
 """
 
 sources_md = """
