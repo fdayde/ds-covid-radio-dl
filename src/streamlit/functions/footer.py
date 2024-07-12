@@ -25,7 +25,7 @@ def profile(name, linkedin_url=None, github_url=None):
         with name_col3:
             st.write(f"**{name}**")
 
-def add_footer():
+def add_main_footer():
     st.header(" ", divider='rainbow')
     hcol1, hcol2, hcol3 = st.columns([0.2, 0.5, 0.3])
 
@@ -41,6 +41,19 @@ def add_footer():
     with hcol3:
         st.image(logo_path, use_column_width=True)
 
+
+def add_footer():
+    st.header(" ", divider='rainbow')
+    hcol1, hcol2, hcol3 = st.columns([0.7, 0.5, 0.15])
+
+    with hcol1:
+        profile(name="*COVID Lung X-Ray Classification Using a Deep Learning Model, 2024.*", github_url="https://github.com/fdayde/ds-covid-radio-dl")
+
+    with hcol2:
+        st.markdown(" ")
+
+    with hcol3:
+        st.image(logo_path, use_column_width=True)
 
 # Use: at the end each script:
 # add_footer()

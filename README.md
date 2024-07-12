@@ -8,7 +8,7 @@ The primary goal of this fork is to introduce new features and improvements to e
 ### Improvements
 - [x] Added references for dataset, models and images.
 - [x] Provided context of the project on the homepage.
-- [ ] Redesigned the footer.
+- [x] Redesigned the footer.
 - [x] Light code refactoring.
 - [x] Added some lung x-rays images for demo.
 - [ ] Introduced a lung segmentation model.
