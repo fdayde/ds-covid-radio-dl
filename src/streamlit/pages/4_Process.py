@@ -22,13 +22,16 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
-diagram_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_process.svg")
-overfitting_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Overfitting.png")
-training_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "Training_plot.png")
+
+pictures_path = os.path.join(os.path.dirname(__file__), "..", "pictures")
+
+diagram_path = os.path.join(pictures_path, "Training_process.svg")
+overfitting_path = os.path.join(pictures_path, "Overfitting.png")
+training_path = os.path.join(pictures_path, "Training_plot.png")
 
 
 unfolding_markdown = """
-As we have seen previously, the first essential step before delving into deep learning is pre-processing our data. 
+As seen previously, the first essential step before delving into deep learning is to pre-process the data. 
 This prepares our dataset for effective model training and evaluation.
 
 Once our data is ready, we can start with a quick test using a LeNet model to get an initial understanding of how our dataset performs in deep learning.
@@ -41,11 +44,14 @@ We thus need to select the appropriate metric and ensure the model chosen is int
 This approach ensures we choose the most suitable model for our specific dataset and objectives.
 """
 
+
 # Main title
 st.title("Modeling Process")
 st.sidebar.title("Modeling Process")
 pages = ["Unfolding", "Images pre-processing", "Transfer Learning", "Training", "Interpretability", "Evaluation of models"]
 page = st.sidebar.radio("Summary", pages, label_visibility="collapsed")
+
+
 
 if page == "Unfolding":
     st.header("Unfolding", divider = 'rainbow')
@@ -58,7 +64,7 @@ if page == "Unfolding":
     with col2:
         st.markdown(" ")
     with col3:
-        data_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "unfolding.png")
+        data_path = os.path.join(pictures_path, "unfolding.png")
         st.image(data_path, caption="https://deepnote.com/app/a_mas/Data-Preprocessing-Tools-4943e322-768c-4961-b30f-c0e8f63bf0ec", use_column_width=True)
 
 
@@ -112,13 +118,14 @@ CLAHE is a variant of histogram equalization that operates on small regions in t
 **Benefits:**
 - Enhances local contrast while preventing noise amplification.
 - Suitable for medical images and other scenarios where local contrast enhancement is critical.''')
-    image_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "preprocessing_comparison.png")
+    image_path = os.path.join(pictures_path, "preprocessing_comparison.png")
     st.image(image_path, caption="Comparison of normalization methods - images/pixel intensity repartition", use_column_width=True)
     
     st.subheader("Conclusion", divider = 'gray')
     st.markdown(r'''
 We chose to normalize the images with CLAHE because it provides a balanced approach to enhancing local contrast without amplifying noise excessively. This method is particularly beneficial for our dataset, which contains images where fine details are crucial for analysis. Min-Max Normalization and Histogram Normalization also play significant roles in different contexts, providing global contrast enhancement and fixed range scaling, respectively. By using these normalization techniques, we aim to improve the performance and accuracy of our image analysis tasks.
     ''')
+
 
 
 if page == "Transfer Learning":
@@ -157,7 +164,6 @@ for layer in base_model.layers[137:] # Unfreezing the last two convolutional blo
 - **Evaluate and Adjust**: Assess performance and adjust as needed.""")
     
              
-
 
 if page == "Training":
     st.header("Training", divider = 'rainbow')
@@ -449,6 +455,7 @@ The data has already been divided into 3 sets : Train, Validation and Test. The 
         st.plotly_chart(fig)
 
 
+
 if page == "Interpretability":
     st.header("Interpretation", divider = 'rainbow')
     col1, col2, col3 = st.columns([0.35,0.15,0.5])
@@ -474,15 +481,15 @@ Grad-CAM offers a simple yet powerful way to interpret CNN decisions, improving 
         scol1, scol2 = st.columns([0.5, 0.5])
 
         with scol1:
-            st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex_nomask.png"), 
+            st.image(os.path.join(pictures_path, "grad_cam_ex_nomask.png"), 
                     caption="Grad-CAM on Non-Masked Image")
-            st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex2_nomask.png"),
+            st.image(os.path.join(pictures_path, "grad_cam_ex2_nomask.png"),
                     caption="Grad-CAM on Non-Masked Image")
 
         with scol2:
-            st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex_mask.png"), 
+            st.image(os.path.join(pictures_path, "grad_cam_ex_mask.png"), 
                     caption="Grad-CAM on Masked Image")
-            st.image(os.path.join(os.path.dirname(__file__), "..", "pictures", "grad_cam_ex2_mask.png"), 
+            st.image(os.path.join(pictures_path, "grad_cam_ex2_mask.png"), 
                     caption="Grad-CAM on Masked Image")
 
 
@@ -525,7 +532,6 @@ Compared to other CNNs, the dense layer architecture of Densenet201 is designed 
         st.pyplot(plot_model_similarity_graph(neighbors, nb_neighbors=nb_neighbors))
         # Display the DataFrame
         st.write(df_clasif_report)
-
 
 
 add_footer()

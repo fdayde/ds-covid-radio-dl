@@ -1,6 +1,6 @@
 import streamlit as st
 from pathlib import Path
-from functions.footer import add_footer
+from functions.footer import add_main_footer
 
 
 
@@ -24,7 +24,7 @@ st.markdown("""
 
 
 
-st.title("Data Science Project: COVID Lung X-Rays Classification")
+st.title("COVID Lung X-Ray Classification Using a Deep Learning Model")
 st.header(" ", divider = 'rainbow')
 
 
@@ -48,4 +48,4 @@ This version has been forked from the original project:
 
 st.markdown(context_md)
 
-add_footer()
+add_main_footer()

@@ -17,14 +17,16 @@ st.markdown("""
         """, unsafe_allow_html=True)
 
 
+pictures_path = os.path.join(os.path.dirname(__file__), "..", "pictures")
+
 # CNN images path
-input_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "input_data.webp")
-relu_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "relu.png")
-flatten_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "flatten.webp")
-dense_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "dense.webp")
-architecture_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "cnn_architecture.png")
-convolution_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "convolution.gif")
-pooling_img_path = os.path.join(os.path.dirname(__file__), "..", "pictures", "pooling.gif")
+input_img_path = os.path.join(pictures_path, "input_data.webp")
+relu_img_path = os.path.join(pictures_path, "relu.png")
+flatten_img_path = os.path.join(pictures_path, "flatten.webp")
+dense_img_path = os.path.join(pictures_path, "dense.webp")
+architecture_img_path = os.path.join(pictures_path, "cnn_architecture.png")
+convolution_img_path = os.path.join(pictures_path, "convolution.gif")
+pooling_img_path = os.path.join(pictures_path, "pooling.gif")
 
 
 # CNN steps text :

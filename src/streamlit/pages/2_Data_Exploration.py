@@ -1,6 +1,5 @@
 import streamlit as st
 import os
-from streamlit_extras.app_logo import add_logo
 from functions.footer import add_footer
 
 
@@ -30,8 +29,7 @@ data_markdown = """
 We worked on the COVID-QU-Ex Dataset available on [Kaggle](https://www.kaggle.com/datasets/cf77495622971312010dd5934ee91f07ccbcfdea8e2f7778977ea8485c1914df).
 
 This data set is a more complete version of the initially proposed dataset.  
-The researchers of Qatar University have created a new dataset containing the previous data,
-to which they added new images.  
+The researchers of Qatar University have created a new dataset containing the previous data, to which they added new images.  
 They compiled all the data in the "COVID-QU-Ex dataset", which consists of 33,920 chest X-ray (CXR) images including:
 
 - 11,956 COVID-19
@@ -44,11 +42,9 @@ We'll keep this separation when using the ImageGenerator as this approach allows
  - Validate the model with the Validation set: Use the validation data to tune hyperparameters and make adjustments, ensuring the model performs well on unseen data.
  - Evaluate the model with the Test set: Conduct the final assessment of the model's performance to ensure an unbiased evaluation.
 This practice is standard in machine learning and deep learning, providing a robust framework for model development and assessment.
-
-
 """
 
-path_images = os.path.join(os.path.dirname(__file__), "..", "pictures")
+pictures_path = os.path.join(os.path.dirname(__file__), "..", "pictures")
 
 
 if page == "Dataset Analysis":
@@ -75,46 +71,46 @@ if page == "Dataset Analysis":
 
     with column3:
         st.markdown("Label: COVID")
-        image_path1 = os.path.join(path_images, "data_exploration", "COVID-19", "images", "covid_200.png")
+        image_path1 = os.path.join(pictures_path, "data_exploration", "COVID-19", "images", "covid_200.png")
         st.image(image_path1, caption="image covid_200.png")
         st.markdown("Label: Non-COVID")
-        image_path2 = os.path.join(path_images, "data_exploration", "Non-COVID", "images", "non_COVID (170).png")
+        image_path2 = os.path.join(pictures_path, "data_exploration", "Non-COVID", "images", "non_COVID (170).png")
         st.image(image_path2, caption="image non_covid (170).png")
         st.markdown("Label: Normal")
-        image_path3 = os.path.join(path_images, "data_exploration", "Normal", "images", "Normal (3935).png")
+        image_path3 = os.path.join(pictures_path, "data_exploration", "Normal", "images", "Normal (3935).png")
         st.image(image_path3, caption="Normal (3935).png")
 
     with column4:
         st.markdown("""Mask associated""")
-        mask_path1 = os.path.join(path_images, "data_exploration", "COVID-19", "lung masks", "covid_200.png")
+        mask_path1 = os.path.join(pictures_path, "data_exploration", "COVID-19", "lung masks", "covid_200.png")
         st.image(mask_path1, caption="mask covid_200.png")
         st.markdown("""Mask associated""")
-        mask_path2 = os.path.join(path_images, "data_exploration", "Non-COVID", "lung masks", "non_COVID (170).png")
+        mask_path2 = os.path.join(pictures_path, "data_exploration", "Non-COVID", "lung masks", "non_COVID (170).png")
         st.image(mask_path2, caption="mask non_covid (170).png")
         st.markdown("""Mask associated""")
-        mask_path3 = os.path.join(path_images, "data_exploration", "Normal", "lung masks", "Normal (3935).png")
+        mask_path3 = os.path.join(pictures_path, "data_exploration", "Normal", "lung masks", "Normal (3935).png")
         st.image(mask_path3, caption="Normal (3935).png")
 
     with column5:
         st.markdown("Label: COVID")
-        image_path4 = os.path.join(path_images, "data_exploration", "COVID-19", "images", "covid_11.png")
+        image_path4 = os.path.join(pictures_path, "data_exploration", "COVID-19", "images", "covid_11.png")
         st.image(image_path4, caption="image covid_11.png")
         st.markdown("Label: Non-COVID")
-        image_path5 = os.path.join(path_images, "data_exploration", "Non-COVID", "images", "non_COVID (764).png")
+        image_path5 = os.path.join(pictures_path, "data_exploration", "Non-COVID", "images", "non_COVID (764).png")
         st.image(image_path5, caption="image non_covid (764).png")
         st.markdown("Label: Normal")
-        image_path6 = os.path.join(path_images, "data_exploration", "Normal", "images", "Normal (8398).png")
+        image_path6 = os.path.join(pictures_path, "data_exploration", "Normal", "images", "Normal (8398).png")
         st.image(image_path6, caption="Normal (8398).png")
 
     with column6:
         st.markdown("""Mask associated""")
-        mask_path4 = os.path.join(path_images, "data_exploration", "COVID-19", "lung masks", "covid_11.png")
+        mask_path4 = os.path.join(pictures_path, "data_exploration", "COVID-19", "lung masks", "covid_11.png")
         st.image(mask_path4, caption="mask covid_11.png")
         st.markdown("""Mask associated""")
-        mask_path5 = os.path.join(path_images, "data_exploration", "Non-COVID", "lung masks", "non_COVID (764).png")
+        mask_path5 = os.path.join(pictures_path, "data_exploration", "Non-COVID", "lung masks", "non_COVID (764).png")
         st.image(mask_path5, caption="mask non_covid (764).png")
         st.markdown("""Mask associated""")
-        mask_path6 = os.path.join(path_images, "data_exploration", "Normal", "lung masks", "Normal (8398).png")
+        mask_path6 = os.path.join(pictures_path, "data_exploration", "Normal", "lung masks", "Normal (8398).png")
         st.image(mask_path6, caption="Normal (8398).png")
 
 if page == "Data Visualization":
@@ -125,11 +121,11 @@ if page == "Data Visualization":
     with col1:
         # DataViz - Image Count
         st.subheader("Image count", divider = 'gray')
-        data_path1 = os.path.join(path_images, "data_repartition.PNG")
+        data_path1 = os.path.join(pictures_path, "data_repartition.PNG")
         st.image(data_path1, caption="Repartition of images in each label", use_column_width=True)
         st.markdown("""
-                As seen above, with this new dataset, we worked on more data, which usually leads to more accurate models. 
-                In our case, we also have access to balanced data, which simplifies the preprocessing and reduce bias in models.  
+                As seen above, with this new dataset, we worked on more data, which usually leads to more accurate models.  
+                In our case, we also have access to balanced data, which simplifies the preprocessing and reduce bias in models.   
                 We now have 35% of the dataset pertaining to the COVID label, while the original dataset contained only 17% of COVID labels.
 
                 """)
@@ -139,7 +135,7 @@ if page == "Data Visualization":
     with col3:
         # DataViz - Intensity Mean
         st.subheader("Mean intensity", divider = 'grey')
-        data_path2 = os.path.join(path_images, "mean_intensity.PNG")
+        data_path2 = os.path.join(pictures_path, "mean_intensity.PNG")
         st.image(data_path2, caption="Mean intensity of images and masks in each label", use_column_width=True)
         st.markdown("""
                     Masks have roughly the same intensity spread for each label, but we can see that COVID images are more intense in average.  
