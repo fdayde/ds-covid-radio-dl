@@ -12,6 +12,8 @@ The primary goal of this fork is to introduce new features and improvements to e
 - [x] Light code refactoring.
 - [x] Added some lung x-rays images for demo.
 - [ ] Introduced a lung segmentation model.
+- [ ] Implemented a segmentation model to crop photographs of X-rays, removing any non-X-ray parts of the image.
+- [ ] Improve readability of the prediction.
 - [ ] Deep code refactoring?
 ------------
 View the updated **streamlit app** on [Hugging Face](https://huggingface.co/spaces/fdayde/Streamlit-Dl-Radio-fd) 🤗
