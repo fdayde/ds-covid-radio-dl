@@ -163,6 +163,7 @@ cython_debug/
 # Data folder
 data/raw/*
 data/processed/*
+data/working/*
 
 # weights for del model
 src/streamlit/models/model_densenet_masked.weights.h5
